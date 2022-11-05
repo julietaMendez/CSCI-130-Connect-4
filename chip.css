@@ -3,6 +3,7 @@
     height: 50px;
     background: rgb(255, 103, 103);
     border-radius: 50px;
+    margin: auto;   
     /* padding: 1vh;
     margin-left: 2vw;
     margin-right: 2vw; */
@@ -11,9 +12,9 @@
     animation-delay: 0s; */
 }
 
-#table{
+td{
     /* min-width: 200px;
     min-height: 200px;*/
-    width: 200px;
-    height: 200px;  
+    width: 100px;
+    height: 100px;  
 }
