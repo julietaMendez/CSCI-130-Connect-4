@@ -22,11 +22,10 @@ function place_chip(id){
     let x = document.getElementById(id);
     let col = id.slice(2);
     let row = id.slice(0);
-    let rowPlace = 0;
     if(colArr[col]<= 5){ // valid placement
-      rowPlace = 6 - (colArr[col] + 1); //numRows - numChips at col = 1
-      // place it at [rowPlace,col] = [2,3]
-      } 
+      row--;
+      // place it at [row,col] = [2,3]
+    } 
     x.innerHTML = "<div class='chip1'></div>";
 
 }
