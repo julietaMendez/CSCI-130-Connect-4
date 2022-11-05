@@ -19,14 +19,17 @@ function create_tbl() {
 
 //3 for col, 4 row saved at row 5 col 3
 function place_chip(id){
-    let x = document.getElementById(id);
+    //let x = document.getElementById(id);
     let col = id.slice(2);
     let row = id.slice(0);
+    let row_place = 6;
+    num_chips_in_col = colArr[col];
     if(colArr[col]<= 5){ // valid placement
-      row--;
-      // place it at [row,col] = [2,3]
-    } 
-    x.innerHTML = "<div class='chip1'></div>";
+      row_place= rowPlace-(num_chips_in_col+1); 
+      // place it at [rowPlace,col] 
+      } 
+    let chip = document.getElementById(row_place+"_"+col);
+    chip.innerHTML = "<div class='chip1'></div>";
 
 }
 
