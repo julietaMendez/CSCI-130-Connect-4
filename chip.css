@@ -1,7 +1,7 @@
 .chip1{
     width: 50px;
     height: 50px;
-    background: rgb(228, 0, 0);
+    /* background: rgb(228, 0, 0); */
     border-radius: 50px;
     margin: auto;
     box-shadow: 3px 3px rgb(0, 0, 0); 
@@ -26,10 +26,23 @@ td{
     background-color: rgb(20, 20, 116);
 } */
     
-table{
+#table{
     background-color: rgb(25, 25, 158);
     border: 1px solid rgb(0, 0, 0);
     margin:auto;
+}
+
+.red{
+    background-color: red;
+}
+.lightblue{
+    background-color: lightblue;
+}
+.yellow{
+    background-color: yellow;
+}
+.purple{
+    background-color: purple;
 }
 
 .empty_space{
@@ -40,4 +53,6 @@ table{
     margin: auto;
     box-shadow: 2px 2px 2px lightblue;   
 }
+
+
 

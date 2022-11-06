@@ -6,10 +6,25 @@
     <body>
         <form>
             <fieldset>
-                <label></label>
-                <input type="button" id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
-                <input type="button" id="tbl8_9" value="8x9" onclick="create_tbl(this.id)">
-
+                <label for="choose_size">Choose board size: </label>
+                <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
+                <input type="button" name=choose_size id="tbl8_9" value="8x9" onclick="create_tbl(this.id)">
+                <br>
+                <table id="color">
+                    <tr>
+                        <td><input type=button id="red" value="red" onclick="set_chip_color(this.id)">
+                            <input type=button id="lightblue" value="blue" onclick="set_chip_color(this.id)">
+                            <input type=button id="yellow" value="yellow" onclick="set_chip_color(this.id)">
+                            <input type=button id="purple" value="purple" onclick="set_chip_color(this.id)">
+                        </td>
+                        <td><input type=button id="red" value="red" onclick="set_chip_color(this.id)">
+                            <input type=button id="lightblue" value="blue" onclick="set_chip_color(this.id)">
+                            <input type=button id="yellow" value="yellow" onclick="set_chip_color(this.id)">
+                            <input type=button id="purple" value="purple" onclick="set_chip_color(this.id)">
+                        </td>
+                        
+                    </tr>
+                </table>
 
             </fieldset>
         </form>

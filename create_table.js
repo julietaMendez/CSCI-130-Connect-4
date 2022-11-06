@@ -3,7 +3,10 @@ var tbl = document.getElementById("table");
 var colArr = createColArr(max_col);
 var max_col;
 var max_row;
-var player_id=1;
+var player_color0;
+var player_color1;
+var player_id=0;
+
 
 
 function createColArr(max_col){
@@ -45,7 +48,6 @@ function shade_col(id) { // onmouseover: on hover
   }
   let shade_space = find_space(col, colArr[col]);
   let chip = document.getElementById(shade_space+"_"+col);
-  console.log(shade_space+"_"+col);
   chip.style.backgroundColor = "pink";
 }
 
@@ -81,9 +83,33 @@ function place_chip(id){
     colArr[curr_col]+=1;
 
     let chip = document.getElementById(space_avail+"_"+curr_col);
-    chip.innerHTML = "<div class='chip"+player_id+"'></div>";
+    if (player_id==0){
+      str = `<div class='chip${player_id} ${player_color0}'></div>`;
+    }
+    else{
+      str = `<div class='chip${player_id} ${player_color1}'></div>`;
+    }
+    console.log(str)
+    
+    chip.innerHTML = str
     player_id==1?player_id=0:player_id=1; //ternary to change players
 }
+
+function set_chip_color(color){
+  if(player_id==0){
+    player_color0=color
+    console.log('player0: ',player_color0)
+  }
+  if(player_id==1){
+    player_color1=color
+    console.log('player1: ',player_color1)
+  }
+
+  player_id==0? player_id=1:player_id=0;
+
+}
+
+
 
 
 
