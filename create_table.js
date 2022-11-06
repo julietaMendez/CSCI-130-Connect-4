@@ -1,13 +1,12 @@
 // Create the table
-var tbl = document.getElementById("table");
+var tbl = document.getElementById("connect_4_table");
 var colArr = createColArr(max_col);
 var max_col;
 var max_row;
-var player_color0;
-var player_color1;
+var player_color0="red";
+var player_color1="yellow";
 var player_id=0;
-
-
+var curr_player = document.getElementById("curr_player");
 
 function createColArr(max_col){
   var arr = new Array(); //keep track of spots taken within col at index i
@@ -35,7 +34,7 @@ function create_tbl(tbl_size) {
       cell.setAttribute("onmouseover", "shade_col(this.id)");
       cell.setAttribute("onmouseout", "normal_col(this.id)");
     }
-    tbl.border="solid 1px black";
+    tbl.border="solid 10px black";
     tbl.style.borderCollapse = "collapse";
   }
 }
@@ -92,24 +91,32 @@ function place_chip(id){
     console.log(str)
     
     chip.innerHTML = str
+    if(player_id==1){
+      curr_player.innerHTML = player_color0;
+    }
+    else{
+      curr_player.innerHTML = player_color1;
+    }
+
     player_id==1?player_id=0:player_id=1; //ternary to change players
 }
 
-function set_chip_color(color){
-  if(player_id==0){
-    player_color0=color
-    console.log('player0: ',player_color0)
+function set_chip_color_p1(color){
+  //p1 cannot choose the same color as p2
+  if(player_color1 != color){
+    let p1 = document.getElementById("p1_color");
+    player_color0=color;
+    p1.innerHTML = player_color0;
+    let curr_p = document.getElementById("curr_player");
+    curr_p.innerHTML = player_color0;
   }
-  if(player_id==1){
-    player_color1=color
-    console.log('player1: ',player_color1)
-  }
-
-  player_id==0? player_id=1:player_id=0;
-
 }
 
-
-
-
-
+function set_chip_color_p2(color){
+  //p2 cannot choose the same color as p1
+  if(player_color0 != color){ 
+    let p2 = document.getElementById("p2_color");
+    player_color1=color;
+    p2.innerHTML = player_color1;
+  }
+}

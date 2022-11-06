@@ -1,0 +1,43 @@
+<!-- The players will choose their board size and chip colors here, then navigate to the board game page -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="chip.css">
+    </head>
+    <body>
+        <div class="select_options">
+        <form>
+            <fieldset>
+            <table id="player_color_table">
+                <tr>
+                    <td>Player 1, choose your color</td>
+                    <td>Player 2, choose your color</td>
+                </tr>
+                <tr>
+                    <td><input type=button id="red" value="red" onclick="set_chip_color_p1(this.id)">
+                        <input type=button id="lightblue" value="blue" onclick="set_chip_color_p1(this.id)">
+                        <input type=button id="yellow" value="yellow" onclick="set_chip_color_p1(this.id)">
+                        <input type=button id="purple" value="purple" onclick="set_chip_color_p1(this.id)">
+                    </td>
+                    <td><input type=button id="red" value="red" onclick="set_chip_color_p2(this.id)">
+                        <input type=button id="lightblue" value="blue" onclick="set_chip_color_p2(this.id)">
+                        <input type=button id="yellow" value="yellow" onclick="set_chip_color_p2(this.id)">
+                        <input type=button id="purple" value="purple" onclick="set_chip_color_p2(this.id)">
+                    </td>
+                </tr>
+            </table>
+            </fieldset>
+        </form>
+        <h2>Player 1 Color: </h2>
+        <p id="p1_color">Red</p>
+        <h2>Player 2 Color: </h2>
+        <p id="p2_color">Yellow</p>
+        <h2>Current player: </h2>
+        <p id="curr_player">1</p>
+        </div>
+
+        <a href="board_chip.html">Start game</a>
+        
+        <script src="create_table.js"></script>
+    </body>
+</html>

@@ -21,15 +21,15 @@ td{
     width: 100px;
     height: 100px;
 }
-
-/* td:hover{
-    background-color: rgb(20, 20, 116);
-} */
     
-#table{
+#connect_4_table{ 
     background-color: rgb(25, 25, 158);
     border: 1px solid rgb(0, 0, 0);
     margin:auto;
+}
+
+#player_color_table{
+    width: 40%;
 }
 
 .red{
@@ -54,5 +54,26 @@ td{
     box-shadow: 2px 2px 2px lightblue;   
 }
 
+.display{
+    width:30%;
+    height:1000px;
+    float:right;
+    background-color:lightgray;
+    padding:20px;
+    margin:0 20px;
+}
 
+.select_options{
+    background-color: gray;
+    padding:20px;
+    margin:10px;
+}
 
+/* #start_btn{
+    border-radius: 10px;
+    background-color: green;
+    font-size: 20px;
+    font-weight: bold;
+    padding:20px;
+    width:100%;
+} */
