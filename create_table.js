@@ -3,6 +3,7 @@ var tbl = document.getElementById("table");
 var colArr = createColArr(max_col);
 var max_col;
 var max_row;
+var player_id=1;
 
 
 function createColArr(max_col){
@@ -27,6 +28,7 @@ function create_tbl(tbl_size) {
       let cell = row.insertCell();
       cell.setAttribute("id", i+'_'+j)
       cell.setAttribute("onclick", "place_chip(this.id)");
+      cell.innerHTML = "<div class='empty_space'></div>";
     }
     tbl.border="solid 1px black";
     tbl.style.borderCollapse = "collapse";
@@ -52,7 +54,9 @@ function place_chip(id){
       colArr[curr_col]+=1;
       } 
     let chip = document.getElementById(row_place+"_"+curr_col);
-    chip.innerHTML = "<div class='chip1'></div>";
+    chip.innerHTML = "<div class='chip"+player_id+"'></div>";
+    player_id==1?player_id=0:player_id=1; //ternary to change players
+    console.log(player_id)
 }
 
 
