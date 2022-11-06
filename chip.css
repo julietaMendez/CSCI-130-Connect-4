@@ -4,17 +4,9 @@
     background: rgb(255, 103, 103);
     border-radius: 50px;
     margin: auto;   
-    /* padding: 1vh;
-    margin-left: 2vw;
-    margin-right: 2vw; */
-    /* position: relative;
-    animation: anim1 20s infinite;
-    animation-delay: 0s; */
 }
 
 td{
-    /* min-width: 200px;
-    min-height: 200px;*/
     width: 100px;
     height: 100px;  
 }
