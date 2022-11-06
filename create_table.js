@@ -69,7 +69,6 @@ function find_space(curr_col, num_chips_in_col){
   space_avail=0;
   if(num_chips_in_col<= max_row){ // valid placement
     space_avail= max_row-(num_chips_in_col+1); // calculates first available placement
-    colArr[curr_col]+=1;
     } 
   return space_avail; // returns index of row to place chip
 }
@@ -79,6 +78,7 @@ function place_chip(id){
     let curr_row = id.slice(-1);
     let num_chips_in_col = colArr[curr_col];
     let space_avail = find_space(curr_col, num_chips_in_col);
+    colArr[curr_col]+=1;
 
     let chip = document.getElementById(space_avail+"_"+curr_col);
     chip.innerHTML = "<div class='chip"+player_id+"'></div>";
