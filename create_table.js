@@ -29,9 +29,28 @@ function create_tbl(tbl_size) {
       cell.setAttribute("id", i+'_'+j)
       cell.setAttribute("onclick", "place_chip(this.id)");
       cell.innerHTML = "<div class='empty_space'></div>";
+      cell.setAttribute("onmouseover", "shade_col(this.id)");
+      cell.setAttribute("onmouseout", "normal_col(this.id)");
     }
     tbl.border="solid 1px black";
     tbl.style.borderCollapse = "collapse";
+  }
+}
+
+function shade_col(id) { // on hover
+  let col = id.slice(2);
+  for(row=0;row<max_row;row++){
+    let cell = document.getElementById(row+"_"+col);
+    console.log(row+"_"+col);
+    cell.style.backgroundColor = "rgb(20,20,116)"; 
+  }
+}
+
+function normal_col(id) { // not on hover
+  let col = id.slice(2);
+  for(row=0;row<max_row;row++){
+    let cell = document.getElementById(row+"_"+col);
+    cell.style.backgroundColor = "rgb(25, 25, 158)";
   }
 }
 
@@ -43,7 +62,6 @@ function clear_tbl(){
   tbl.innerHTML = '';
 }
 
-//3 for col, 4 row saved at row 5 col 3
 function place_chip(id){
     let curr_col = id.slice(2);
     let curr_row = id.slice(-1);
