@@ -43,6 +43,10 @@ function shade_col(id) { // onmouseover: on hover
     let cell = document.getElementById(row+"_"+col);
     cell.style.backgroundColor = "rgb(20,20,116)"; 
   }
+  let shade_space = find_space(col, colArr[col]);
+  let chip = document.getElementById(shade_space+"_"+col);
+  console.log(shade_space+"_"+col);
+  chip.style.backgroundColor = "pink";
 }
 
 function normal_col(id) { // onmouseout: not on hover
@@ -67,7 +71,7 @@ function find_space(curr_col, num_chips_in_col){
     space_avail= max_row-(num_chips_in_col+1); // calculates first available placement
     colArr[curr_col]+=1;
     } 
-  return space_avail;
+  return space_avail; // returns index of row to place chip
 }
 
 function place_chip(id){
