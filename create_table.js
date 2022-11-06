@@ -37,16 +37,15 @@ function create_tbl(tbl_size) {
   }
 }
 
-function shade_col(id) { // on hover
+function shade_col(id) { // onmouseover: on hover
   let col = id.slice(2);
   for(row=0;row<max_row;row++){
     let cell = document.getElementById(row+"_"+col);
-    console.log(row+"_"+col);
     cell.style.backgroundColor = "rgb(20,20,116)"; 
   }
 }
 
-function normal_col(id) { // not on hover
+function normal_col(id) { // onmouseout: not on hover
   let col = id.slice(2);
   for(row=0;row<max_row;row++){
     let cell = document.getElementById(row+"_"+col);
@@ -62,19 +61,24 @@ function clear_tbl(){
   tbl.innerHTML = '';
 }
 
+function find_space(curr_col, num_chips_in_col){
+  space_avail=0;
+  if(num_chips_in_col<= max_row){ // valid placement
+    space_avail= max_row-(num_chips_in_col+1); // calculates first available placement
+    colArr[curr_col]+=1;
+    } 
+  return space_avail;
+}
+
 function place_chip(id){
     let curr_col = id.slice(2);
     let curr_row = id.slice(-1);
-    let row_place = 0;
-    num_chips_in_col = colArr[curr_col];
-    if(colArr[curr_col]<= max_row){ // valid placement
-      row_place= max_row-(num_chips_in_col+1); 
-      colArr[curr_col]+=1;
-      } 
-    let chip = document.getElementById(row_place+"_"+curr_col);
+    let num_chips_in_col = colArr[curr_col];
+    let space_avail = find_space(curr_col, num_chips_in_col);
+
+    let chip = document.getElementById(space_avail+"_"+curr_col);
     chip.innerHTML = "<div class='chip"+player_id+"'></div>";
     player_id==1?player_id=0:player_id=1; //ternary to change players
-    console.log(player_id)
 }
 
 
