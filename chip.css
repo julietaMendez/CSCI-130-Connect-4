@@ -1,72 +1,75 @@
-.chip1{
-    width: 50px;
-    height: 50px;
-    /* background: rgb(228, 0, 0); */
-    border-radius: 50px;
-    margin: auto;
-    box-shadow: 3px 3px rgb(0, 0, 0); 
+html {
+  font: normal 12px Tahoma, Verdana, Arial, sans-serif;
 }
 
-.chip0{
-    width: 50px;
-    height: 50px;
-    background: rgb(251, 255, 0);
-    border-radius: 50px;
-    margin: auto;
-    box-shadow: 3px 3px rgb(0, 0, 0); 
+.chip1 {
+  width: 50px;
+  height: 50px;
+  /* background: rgb(228, 0, 0); */
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
+.chip0 {
+  width: 50px;
+  height: 50px;
+  background: rgb(251, 255, 0);
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
 
-td{
+#connect_4_table td{
     width: 100px;
     height: 100px;
 }
-    
-#connect_4_table{ 
-    background-color: rgb(25, 25, 158);
-    border: 1px solid rgb(0, 0, 0);
-    margin:auto;
+
+#connect_4_table {
+  background-color: rgb(25, 25, 158);
+  border: 1px solid rgb(0, 0, 0);
+  margin: auto;
 }
 
-#player_color_table{
-    width: 40%;
+#player_color_table {
+  width: 100%;
 }
 
-.red{
-    background-color: red;
+.red {
+  background-color: red;
 }
-.lightblue{
-    background-color: lightblue;
+.blue {
+  background-color: rgb(88, 88, 255);
 }
-.yellow{
-    background-color: yellow;
+.yellow {
+  background-color: yellow;
 }
-.purple{
-    background-color: purple;
-}
-
-.empty_space{
-    width: 50px;
-    height: 50px;
-    background: rgb(0, 0, 0, .5);
-    border-radius: 50px;
-    margin: auto;
-    box-shadow: 2px 2px 2px lightblue;   
+.purple {
+  background-color: rgb(170, 108, 228);
 }
 
-.display{
-    width:30%;
-    height:1000px;
-    float:right;
-    background-color:lightgray;
-    padding:20px;
-    margin:0 20px;
+.empty_space {
+  width: 50px;
+  height: 50px;
+  background: rgb(0, 0, 0, 0.5);
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 2px 2px 2px lightblue;
 }
 
-.select_options{
-    background-color: gray;
-    padding:20px;
-    margin:10px;
+.display {
+  width: 30%;
+  height: 1000px;
+  float: right;
+  background-color: lightgray;
+  padding: 20px;
+  margin: 0 20px;
+}
+
+.select_options {
+  background-color: gray;
+  padding: 20px;
+  margin: 10px;
 }
 
 /* #start_btn{

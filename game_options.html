@@ -14,24 +14,36 @@
                     <td>Player 2, choose your color</td>
                 </tr>
                 <tr>
-                    <td><input type=button id="red" value="red" onclick="set_chip_color_p1(this.id)">
-                        <input type=button id="lightblue" value="blue" onclick="set_chip_color_p1(this.id)">
-                        <input type=button id="yellow" value="yellow" onclick="set_chip_color_p1(this.id)">
-                        <input type=button id="purple" value="purple" onclick="set_chip_color_p1(this.id)">
+                    <td><input type=button class="red" id="red" value="red" onclick="set_chip_color_p1(this.id)">
+                        <input type=button class="blue" id="blue" value="blue" onclick="set_chip_color_p1(this.id)">
+                        <input type=button class="yellow" id="yellow" value="yellow" onclick="set_chip_color_p1(this.id)">
+                        <input type=button class="purple" id="purple" value="purple" onclick="set_chip_color_p1(this.id)">
+                        <h2>Player 1 Color: </h2>
+                        <p id="p1_color">Red</p>
                     </td>
-                    <td><input type=button id="red" value="red" onclick="set_chip_color_p2(this.id)">
-                        <input type=button id="lightblue" value="blue" onclick="set_chip_color_p2(this.id)">
-                        <input type=button id="yellow" value="yellow" onclick="set_chip_color_p2(this.id)">
-                        <input type=button id="purple" value="purple" onclick="set_chip_color_p2(this.id)">
+                    <td><input type=button class="red" id="red" value="red" onclick="set_chip_color_p2(this.id)">
+                        <input type=button class="blue" id="blue" value="blue" onclick="set_chip_color_p2(this.id)">
+                        <input type=button class="yellow" id="yellow" value="yellow" onclick="set_chip_color_p2(this.id)">
+                        <input type=button class="purple" id="purple" value="purple" onclick="set_chip_color_p2(this.id)">
+                        <h2>Player 2 Color: </h2>
+                        <p id="p2_color">Yellow</p>
+                    </td>
+                </tr>
+                <tr><td>Choose a board color</td></tr>
+                <tr>
+                    <td>
+                        <input type=button class="red" id="red" value="red" onclick="set_board_color(this.id)">
+                        <input type=button class="blue" id="blue" value="blue" onclick="set_board_color(this.id)">
+                        <input type=button class="yellow" id="yellow" value="yellow" onclick="set_board_color(this.id)">
+                        <input type=button class="purple" id="purple" value="purple" onclick="set_board_color(this.id)">
                     </td>
                 </tr>
             </table>
             </fieldset>
         </form>
-        <h2>Player 1 Color: </h2>
-        <p id="p1_color">Red</p>
-        <h2>Player 2 Color: </h2>
-        <p id="p2_color">Yellow</p>
+        <h2>Board Color:</h2>
+        <p id="board_color">blue</p>
+       
         <h2>Current player: </h2>
         <p id="curr_player">1</p>
         </div>

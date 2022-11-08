@@ -5,6 +5,7 @@ var max_col;
 var max_row;
 var player_color0="red";
 var player_color1="yellow";
+var board_color="blue";
 var player_id=0;
 var curr_player = document.getElementById("curr_player");
 
@@ -120,3 +121,11 @@ function set_chip_color_p2(color){
     p2.innerHTML = player_color1;
   }
 }
+
+function set_board_color(color){
+  if(color != "blue"){
+    let display_board_color = document.getElementById("board_color");
+    display_board_color.innerText=color;
+  }console.log(color); 
+}
+  
