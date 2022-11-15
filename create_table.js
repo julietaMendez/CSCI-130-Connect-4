@@ -3,8 +3,8 @@ var tbl = document.getElementById("connect_4_table");
 var colArr = createColArr(max_col);
 var max_col;
 var max_row;
-var player_color0="red";
-var player_color1="yellow";
+var player1_color="red";
+var player2_color="yellow";
 var board_color="blue";
 var player_id=0;
 var curr_player = document.getElementById("curr_player");
@@ -16,6 +16,7 @@ function createColArr(max_col){
   }
   return arr;
 }
+
 
 function create_tbl(tbl_size) {
   // slice the id to get the board size 
@@ -84,48 +85,68 @@ function place_chip(id){
 
     let chip = document.getElementById(space_avail+"_"+curr_col);
     if (player_id==0){
-      str = `<div class='chip${player_id} ${player_color0}'></div>`;
+      str = `<div class='chip${player_id} ${player1_color}'></div>`;
     }
     else{
-      str = `<div class='chip${player_id} ${player_color1}'></div>`;
+      str = `<div class='chip${player_id} ${player2_color}'></div>`;
     }
     console.log(str)
     
     chip.innerHTML = str
     if(player_id==1){
-      curr_player.innerHTML = player_color0;
+      curr_player.innerHTML = player1_color;
     }
     else{
-      curr_player.innerHTML = player_color1;
+      curr_player.innerHTML = player2_color;
     }
 
     player_id==1?player_id=0:player_id=1; //ternary to change players
 }
 
-function set_chip_color_p1(color){
+function set_chip_color_p1(input_color){
   //p1 cannot choose the same color as p2
-  if(player_color1 != color){
+  if(player2_color != input_color){
+    player1_color = input_color;    // keep track
+    p1_color_display = document.getElementById("p1_color"); // get the display
+    p1_color_display.value = input_color;   // set the display
+
+    /*
     let p1 = document.getElementById("p1_color");
-    player_color0=color;
-    p1.innerHTML = player_color0;
+    player1_color=color;
+    p1.value = player1_color;
     let curr_p = document.getElementById("curr_player");
-    curr_p.innerHTML = player_color0;
+    curr_p.innerHTML = player1_color;
+    */
   }
 }
 
-function set_chip_color_p2(color){
+function set_chip_color_p2(input_color){
   //p2 cannot choose the same color as p1
-  if(player_color0 != color){ 
+  if(player1_color != input_color){ 
+    player2_color = input_color;    // keep track
+    p2_color_display = document.getElementById("p2_color"); // get the display
+    p2_color_display.value = input_color;   // set the display
+  }
+  /*
+  if(player1_color != color){ 
     let p2 = document.getElementById("p2_color");
-    player_color1=color;
-    p2.innerHTML = player_color1;
+    player2_color=color;
+    p2.innerHTML = player2_color;
+  }
+  */
+}
+
+function set_board_color(input_color){
+  if (input_color != player1_color && input_color != player2_color){
+    let board_color_display = document.getElementById("board_color");
+    board_color_display.value=input_color;
   }
 }
 
-function set_board_color(color){
-  if(color != "blue"){
-    let display_board_color = document.getElementById("board_color");
-    display_board_color.innerText=color;
-  }console.log(color); 
+function set_tbl_size(input_tbl_size, display){
+  max_col = input_tbl_size.slice(5);
+  max_row = input_tbl_size.slice(3,4);
+  let board_size_display = document.getElementById("board_size");
+  board_size_display.value=display;
 }
   
