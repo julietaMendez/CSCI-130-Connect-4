@@ -16,7 +16,9 @@ $player1->password;
 $player1->user_id;
 $player1->chip_color = $p1_color;
 $player1->hints;
-$player1->stats;
+$player1->wins;
+$player1->total_games;
+$player1->total_time;
 $player_json1 = json_encode($player1);
 
 $player2 = new Player();
@@ -25,7 +27,9 @@ $player2->password;
 $player2->user_id;
 $player2->chip_color = $p2_color;
 $player2->hints;
-$player2->stats;
+$player2->wins;
+$player2->total_games;
+$player2->total_time;
 $player_json2 = json_encode($player2);
 
 //create board instance

@@ -5,7 +5,9 @@ class Player implements JsonSerializable{
     public $user_id;
     public $chip_color;
     public $hints;
-    public $stats;
+    public $wins;
+    public $total_games;
+    public $total_time;
 
     public function __construct(){
         $this->user_name = generateRandomString();
@@ -13,7 +15,9 @@ class Player implements JsonSerializable{
         $this->user_id = generateRandomString();
         $this->chip_color = strval(10);
         $this->hints = [];
-        $this->stats = [];
+        $this->wins = 0;
+        $this->total_games = 0;
+        $this->total_time = 0;
     }
 
     // obj to str
@@ -24,7 +28,9 @@ class Player implements JsonSerializable{
             'user_id' => $this->user_id,
             'chip_color' => $this->chip_color,
             'hints' => $this->hints,
-            'stats' => $this->stats
+            'wins' => $this->wins,
+            'total_games' => $this->total_games,
+            'total_time' => $this->total_time
             ];
     }
     
@@ -35,7 +41,9 @@ class Player implements JsonSerializable{
         $this->user_id = $json['user_id'];
         $this->chip_color = $json['chip_color'];
         $this->hints = $json['hints'];
-        $this->stats = $json['stats'];
+        $this->wins = $json['wins'];
+        $this->total_games = $json['total_games'];
+        $this->total_time = $json['total_time'];
     }
 
     public function Display() {
