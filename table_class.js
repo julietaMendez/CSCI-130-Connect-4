@@ -17,7 +17,6 @@ function createColArr(max_col){
   return arr;
 }
 
-
 function create_tbl(tbl_size) {
   // slice the id to get the board size 
   max_col = tbl_size.slice(5);
