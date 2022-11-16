@@ -1,5 +1,6 @@
 <?php
-include "create_player_class.php";
+include "player_class.php";
+include ""
 // Get inputs from form post to create classes
 if (isset($_POST['p1_color'])){$p1_color = $_POST['p1_color'];}
 if (isset($_POST['p2_color'])){$p2_color = $_POST['p2_color'];}

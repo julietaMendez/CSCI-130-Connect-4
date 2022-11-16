@@ -10,7 +10,7 @@ class Player implements JsonSerializable{
     public function __construct(){
         $this->user_name = generateRandomString();
         $this->password = generateRandomString();
-        $this->user_id = generateRandomString();;
+        $this->user_id = generateRandomString();
         $this->chip_color = strval(10);
         $this->hints = [];
         $this->stats = [];
