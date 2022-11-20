@@ -31,8 +31,8 @@ if ($conn->connect_error) {
 //create str to create table w/col headers
 $sql = "CREATE TABLE player_tbl (
 pkey INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-username  VARCHAR(30) NOT NULL,
-password  VARCHAR(30) NOT NULL,
+username  VARCHAR(255) NOT NULL,
+password  VARCHAR(255) NOT NULL,
 win INT(10) NOT NULL,
 lose INT(10) NOT NULL,
 draw INT(10) NOT NULL,
