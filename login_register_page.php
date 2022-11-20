@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,26 +17,34 @@
             <form action="register_mysql.php" method="post">
                 <div>
                     <label><sup>*</sup>Username:</label>
-                    <input type="text" name="username" value="" />
+                    <input type="text" name="username" />
                     <span></span>
                 </div>
                 <div>
                     <label><sup>*</sup>Password:</label>
-                    <input type="password" name="password" value="" />
+                    <input type="password" name="password" />
                     <span></span>
                 </div>
                 <div>
                     <label><sup>*</sup>Confirm Password:</label>
-                    <input type="password" name="confirm_password" value="" />
+                    <input type="password" name="confirm_password"  />
                     <span></span>
                 </div>
                 <div>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="submit" />
                     <input type="reset" value="Reset" />
                 </div>
             </form>
+<!-- display all registration errors -->
+            <?php
+            if(isset($_SESSION['reg_err_message'])){
+                
+                foreach ($_SESSION['reg_err_message'] as $error){
+                echo $error.'<br>';}
+            }
+            ?>
         </div>
-      <!-- Login Section -->
+<!-- Login Section -->
         <div class="col">
             <h2>Login</h2>
             <p>Please fill in your credentials to login.</p>
@@ -50,10 +60,23 @@
                     <span></span>
                 </div>
                 <div>
-                    <input type="submit" value="Login_Submit" />
+                    <input type="submit" value="submit" />
                 </div>
             </form>
+<!-- display all login errors -->
+            <?php
+            // display all returned errors 
+            if(isset($_SESSION['login_err_message'])){
+                // session_start();
+                foreach ($_SESSION['login_err_message'] as $error){
+                echo $error.'<br>';}
+            }
+            ?>
         </div>
     </div>
-  </body>
+  </body>    
 </html>
+<?php session_destroy(); ?>
+
+
+

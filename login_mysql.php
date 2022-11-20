@@ -1,26 +1,28 @@
 <?php
 // connect to db
 require_once 'db_connect.php';
- 
+
+session_start();
+
 $username = $password = "";
-$username_err = $password_err = "";
+$err_arr = array();
 
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = 'Please enter username.';
+    if(($_POST["username"]) == NULL){
+        array_push($err_arr,'Please enter username.');
     } else{
         $username = trim($_POST["username"]);
     }
-    
+
     // Check if password is empty
-    if(empty(trim($_POST['password']))){
-        $password_err = 'Please enter your password.';
+    if(($_POST['password']) == NULL){
+        array_push($err_arr,'Please enter your password.');
     } else{
         $password = trim($_POST['password']);
     }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+
+    // check if there were any errors
+    if(empty($err_arr)){
         // Prepare a select statement
         $sql = "SELECT username, password FROM player_tbl WHERE username = ?";
         if($stmt = mysqli_prepare($conn, $sql)){
@@ -35,27 +37,32 @@ $username_err = $password_err = "";
                     if(mysqli_stmt_fetch($stmt)){
                         // echo $password ." user input <br>";
 						// echo $hashed_password ." from db<br>";
-                        echo 'pass verify?: '.password_verify($password, $hashed_password);
                         // check that input pass == hashed pass
                         if(password_verify($password, $hashed_password)){
-                            session_start();
-                            $_SESSION['username'] = $username;      
+                            $_SESSION['username'] = $username;  
                             header("Location: ./game_options_copy.php");
+                            exit;
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = 'The password you entered was not valid.';
+                            array_push($err_arr,"The password you entered was not valid.");
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = 'No account found with that username.';
+                    array_push($err_arr,"No account found with that username.");
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                array_push($err_arr,"Oops! Something went wrong. Please try again later.");
             }
-        }
+        }          
         // Close statement
         mysqli_stmt_close($stmt);
-    }
+    } 
+      
+    // return array of errors to login page
+    $_SESSION['login_err_message'] = $err_arr;    
+     header("Location: ./login_register_page.php");
+    
     // Close connection
     mysqli_close($conn);
+?>
