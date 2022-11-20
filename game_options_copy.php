@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+    session_destroy(); 
     header("Location: ./login_register.html");
     exit;
   }
@@ -12,7 +13,12 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
         <link rel="stylesheet" href="chip.css">
     </head>
     <body>
-        <header><h1>banner here</h1></header>
+        <header>
+            <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
+            <form width="100%" action="logout.php" method="POST">
+                <input type="submit" value="Log out">
+            </form>
+        </header>
         <form class="options" width="100%" action="create_game.php" method="POST">
             <fieldset>
                 <input type=button class="red" id="p1_red" value="red" onclick="set_chip_color_p1(this.value)">

@@ -9,6 +9,7 @@ var board_color="blue";
 var player_id=0;
 var curr_player = document.getElementById("curr_player");
 
+
 function createColArr(max_col){
   var arr = new Array(); //keep track of spots taken within col at index i
   for(i=0;i<max_col; i++){

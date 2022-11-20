@@ -54,8 +54,6 @@ if(empty(trim($_POST["confirm_password"]))){
         echo $confirm_password_err;
     }
 }
-  echo $param_username.' and '. $password.'<br>';
-  echo ($username_err) .''. ($password_err) .' '. ($confirm_password_err);
 
 // Check input errors before inserting in database
 if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
