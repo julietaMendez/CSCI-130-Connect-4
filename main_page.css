@@ -1,0 +1,17 @@
+.col {
+    float: left;
+    padding:20px;
+    min-height: 50vh;
+}
+
+.col:hover{
+    background-color: #cccccc;
+    transition: background-color 2s ease;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

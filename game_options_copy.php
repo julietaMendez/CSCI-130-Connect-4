@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+    header("Location: ./login_register.html");
+    exit;
+  }
+?>
 <!-- The players will choose their board size and chip colors here, then navigate to the board game page -->
 <!DOCTYPE html>
 <html>
@@ -5,7 +12,7 @@
         <link rel="stylesheet" href="chip.css">
     </head>
     <body>
-   
+        <header><h1>banner here</h1></header>
         <form class="options" width="100%" action="create_game.php" method="POST">
             <fieldset>
                 <input type=button class="red" id="p1_red" value="red" onclick="set_chip_color_p1(this.value)">

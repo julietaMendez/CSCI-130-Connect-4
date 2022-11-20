@@ -1,21 +1,24 @@
 <?php
 class Player implements JsonSerializable{
-    public $user_name;
-    public $password;
-    public $user_id;
+    public $username;
+    public $user_id;    //the pkey
     public $chip_color;
     public $hints;
-    public $wins;
+    public $win;
+    public $lose;
+    public $draw;
     public $total_games;
     public $total_time;
 
     public function __construct(){
-        $this->user_name = generateRandomString();
+        $this->username = generateRandomString();
         $this->password = generateRandomString();
-        $this->user_id = generateRandomString();
+        $this->user_id = 0;
         $this->chip_color = generateRandomString();
         $this->hints = [];
-        $this->wins = 0;
+        $this->win = 0;
+        $this->lose = 0;
+        $this->draw = 0;
         $this->total_games = 0;
         $this->total_time = 0;
     }
@@ -23,12 +26,14 @@ class Player implements JsonSerializable{
     // obj to str
     public function jsonSerialize() {
         return [
-            'user_name' => $this->user_name,
+            'username' => $this->username,
             'password' => $this->password,
             'user_id' => $this->user_id,
             'chip_color' => $this->chip_color,
             'hints' => $this->hints,
-            'wins' => $this->wins,
+            'win' => $this->win,
+            'lose' => $this->lose,
+            'draw' => $this->draw,
             'total_games' => $this->total_games,
             'total_time' => $this->total_time
             ];
@@ -36,12 +41,14 @@ class Player implements JsonSerializable{
     
     // std obj -> movie Object
     public function Set($json){
-        $this->user_name = $json['user_name'];
+        $this->user_name = $json['username'];
         $this->password = $json['password'];
         $this->user_id = $json['user_id'];
         $this->chip_color = $json['chip_color'];
         $this->hints = $json['hints'];
-        $this->wins = $json['wins'];
+        $this->win = $json['win'];
+        $this->lose = $json['lose'];
+        $this->draw = $json['draw'];
         $this->total_games = $json['total_games'];
         $this->total_time = $json['total_time'];
     }
