@@ -1,8 +1,7 @@
 <?php
 include "player_class.php";
 include "board_class.php";
-
-session_start();
+require "header.php";
 
 // Get inputs from form post to create classes
 if (isset($_POST['p1_color'])){$p1_color = $_POST['p1_color'];}
@@ -12,17 +11,17 @@ if (isset($_POST['board_size'])){$board_size = $_POST['board_size'];}
 // echo 'player1:' . $p1_color . '</br>player2:' . $p2_color . 
 // '</br>board color:'. $board_color . '</br>board_size: '. $board_size ;
 
-//create player instances
-// $player1 = new Player();
-// $player1->user_name = "player1";
-// $player1->password;
-// $player1->user_id;
-// $player1->chip_color = $p1_color;
-// $player1->hints;
-// $player1->win;
-// $player1->total_games;
-// $player1->total_time;
-// $player1_json = json_encode($player1);
+// create player instances
+$player1 = new Player();
+$player1->user_name = "player1";
+$player1->password;
+$player1->user_id;
+$player1->chip_color = $p1_color;
+$player1->hints;
+$player1->win;
+$player1->total_games;
+$player1->total_time;
+$player1_json = json_encode($player1);
 
 $player2 = new Player();
 $player2->user_name = "player2";
@@ -46,7 +45,7 @@ $board->time_elapse = 0;
 $board->empty_spaces = 0;
 $board_json = json_encode($board);
 
-// $_SESSION["player1"]=$player1_json;
+$_SESSION["player1"]=$player1_json;
 $_SESSION["player2"]=$player2_json;
 $_SESSION["board"]=$board_json;
 

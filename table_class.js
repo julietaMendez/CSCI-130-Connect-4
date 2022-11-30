@@ -149,4 +149,3 @@ function set_tbl_size(input_tbl_size, display){
   let board_size_display = document.getElementById("board_size");
   board_size_display.value=display;
 }
-  

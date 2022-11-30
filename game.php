@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "header.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,8 +11,8 @@ session_start();
         <div class="select_options">
         <form>
             <fieldset>
-                <a href="game_options.php">Go back</a>
-
+            <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
+                <a href="/CSCI-130-CONNECT-4/game_options.php">Go back</a>      
                 <label for="choose_size">Choose board size: </label>
                 <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
                 <input type="button" name=choose_size id="tbl8_9" value="8x9" onclick="create_tbl(this.id)">            
@@ -45,7 +45,7 @@ session_start();
         <div class="display">
         <section>  
             <h2>Player 1 Color: </h2>
-            <!-- <p id="p1_color"><?php echo $_SESSION["player1.chip_color"]; ?></p> -->
+            <p id="p1_color"><?php echo $_SESSION["player1.chip_color"]; ?></p>
             <h2>Player 2 Color: </h2>
             <p id="p2_color">yellow</p>
             <h2>Current player: </h2>
@@ -64,7 +64,3 @@ session_start();
         <script src="table_class.js"></script>
     </body>
 </html>
-
-<?php
-session_destroy();
-?>

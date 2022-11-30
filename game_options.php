@@ -1,10 +1,12 @@
 <?php
-session_start();
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-    session_destroy(); 
-    header("Location: ./login/login_register_page.php");
-    exit;
-  }
+require "header.php";
+
+// session_start();
+// if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+//     session_destroy(); 
+//     header("Location: ./login/login_register_page.php");
+//     exit;
+//   }
 ?>
 <!-- The players will choose their board size and chip colors here, then navigate to the board game page -->
 <!DOCTYPE html>
