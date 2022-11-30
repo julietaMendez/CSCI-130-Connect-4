@@ -11,7 +11,7 @@ session_start();
         <div class="select_options">
         <form>
             <fieldset>
-                <a href="game_options.html">Go back</a>
+                <a href="game_options.php">Go back</a>
 
                 <label for="choose_size">Choose board size: </label>
                 <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">

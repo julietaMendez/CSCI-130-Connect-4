@@ -1,6 +1,6 @@
 <?php
 // connect to db
-require_once 'db_connect.php';
+require_once '../db_connect.php';
 
 session_start();
 
@@ -46,7 +46,7 @@ $err_arr = array();
                             $_SESSION['draw'] = $draw; 
                             $_SESSION['total_games'] = $total_games;  
                             $_SESSION['total_time'] = $total_time;   
-                            header("Location: ./game_options.php");
+                            header("Location: ../game_options.php");
                             exit;
                         } else{
                             // Display an error message if password is not valid
@@ -67,7 +67,7 @@ $err_arr = array();
       
     // return array of errors to login page
     $_SESSION['login_err_message'] = $err_arr;    
-     header("Location: ./login_register_page.php");
+     header("Location: ./login/login_register_page.php");
     
     // Close connection
     mysqli_close($conn);

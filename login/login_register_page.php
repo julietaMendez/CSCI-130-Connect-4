@@ -5,7 +5,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Connect4</title>
-    <link rel="stylesheet" href="main_page.css" />
+    <link rel="stylesheet" href="../main_page.css" />
+
   </head>
   <body>
 <!-- Sign up section -->

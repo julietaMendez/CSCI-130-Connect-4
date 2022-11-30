@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     session_destroy(); 
-    header("Location: ./login_register_page.php");
+    header("Location: ./login/login_register_page.php");
     exit;
   }
 ?>
@@ -16,7 +16,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
         <header>
             <h1><?php echo $_SESSION['win']; ?></h1>
             <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
-            <form width="100%" action="logout.php" method="POST">
+            <form width="100%" action="login/logout.php" method="POST">
                 <input type="submit" value="Log out">
             </form>
         </header>

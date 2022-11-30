@@ -6,6 +6,6 @@ $_SESSION = array();
 session_destroy();
  
 // Redirect to login page
-header("Location: login_register_page.php");
+header("Location: \CSCI-130-CONNECT-4\login\login_register_page.php");
 exit;
 ?>
