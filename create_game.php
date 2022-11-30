@@ -55,5 +55,5 @@ echo "New records:<br> ". $player_json1."<br>". $player_json2 ."<br>".$board_jso
 
 
 
-header("Location: http://localhost/CSCI-130-Connect-4/board_chip.php");
+header("Location: http://localhost/CSCI-130-Connect-4/game.php");
 ?>

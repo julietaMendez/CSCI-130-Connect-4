@@ -14,6 +14,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </head>
     <body>
         <header>
+            <h1><?php echo $_SESSION['win']; ?></h1>
             <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
             <form width="100%" action="logout.php" method="POST">
                 <input type="submit" value="Log out">

@@ -24,22 +24,17 @@ $err_arr = array();
     // check if there were any errors
     if(empty($err_arr)){
         // Prepare a select statement
-        $sql = "SELECT username, win, lose, draw, total_games, total_time, password FROM player_tbl WHERE username = ?";
+        $sql = "SELECT username, password, win, lose, draw, total_games, total_time FROM player_tbl WHERE username = ?";
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "siiiii",  $param_username, $param_win, $param_lose, $param_draw, $param_total_games, $param_total_time);
+            mysqli_stmt_bind_param($stmt, "s",  $param_username);
             $param_username = $username;
-            $param_win = $win;
-            $param_lose = $lose;
-            $param_draw = $draw;
-            $param_total_games = $total_games;
-            $param_total_time = $total_time;
 
            // run stmt and check db for any matching results. 
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);  // get query results
                 if(mysqli_stmt_num_rows($stmt) == 1){  // found matching username in db  
-					mysqli_stmt_bind_result($stmt, $username, $win, $lose, $draw, $total_games, $total_time, $hashed_password);     
+					mysqli_stmt_bind_result($stmt, $username, $hashed_password, $win, $lose, $draw, $total_games, $total_time);     
                     if(mysqli_stmt_fetch($stmt)){
                         // echo $password ." user input <br>";
 						// echo $hashed_password ." from db<br>";
