@@ -12,15 +12,15 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully <br>";
 $db_name="connect4_db";
-// Create the database
-$sql = "CREATE DATABASE ". $db_name;
-if ($conn->query($sql) === TRUE) {
-    echo "Database ". $db_name ." created successfully<br>";
-} else {
-    echo "Error creating database: " . $conn->error ."<br>";
-}
-// close the connection
-$conn->close();
+// // Create the database
+// $sql = "CREATE DATABASE ". $db_name;
+// if ($conn->query($sql) === TRUE) {
+//     echo "Database ". $db_name ." created successfully<br>";
+// } else {
+//     echo "Error creating database: " . $conn->error ."<br>";
+// }
+// // close the connection
+// $conn->close();
 
 // Create connection
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, $db_name);
@@ -68,7 +68,7 @@ if ($conn->query($sql) === TRUE) {
 // $stmt->close();
 // $conn->close();
 
-// no need to save player 2 to the db
+// // no need to save player 2 to the db
 // $player = new Player();
 // $username = $player2->username;
 // $chip_color = $player2->chip_color;

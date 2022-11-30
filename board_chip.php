@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,13 +45,14 @@
         <div class="display">
         <section>  
             <h2>Player 1 Color: </h2>
-            <p id="p1_color">red</p>
+            <!-- <p id="p1_color"><?php echo $_SESSION["player1.chip_color"]; ?></p> -->
             <h2>Player 2 Color: </h2>
             <p id="p2_color">yellow</p>
             <h2>Current player: </h2>
             <p id="curr_player">red</p>
         </section>
         </div>
+
 
 
         <table id="connect_4_table"></table>
@@ -59,3 +64,7 @@
         <script src="table_class.js"></script>
     </body>
 </html>
+
+<?php
+session_destroy();
+?>

@@ -55,7 +55,6 @@ if(empty(trim($_POST["confirm_password"]))){
 }
 
 // Check input errors before inserting in database
-// if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
 if(empty($err_arr)){
     
     // Prepare an insert statement
