@@ -20,7 +20,14 @@ require "header.php";
                     $board_height = $decode->board_height;
                     echo $board_width."x".$board_height;
                     ?>
-                 </div>  
+                 </div>
+                 
+                  <div id = "board_color">
+                    <?php $decode = json_decode($_SESSION["board"]); 
+                    $board_color = $decode->board_color;
+                    echo $board_color;
+                    ?>
+                 </div>
                 
 
               <!--    <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">

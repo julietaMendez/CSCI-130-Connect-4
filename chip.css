@@ -19,8 +19,14 @@ html {
 }
 
 .darken{
-  background-color: rgb(0, 0, 0,.2);
+  filter: brightness(75%);
+  transition: .25s ease;
 }
+
+.hilight{
+  filter: brightness(2) saturate(2);
+}
+
 
 .chip0 {
   width: 50px;
@@ -30,15 +36,15 @@ html {
   margin: auto;
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
-
+ 
 #connect_4_table td{
     width: 100px;
     height: 100px;
 }
 
 #connect_4_table {
-  background-color: rgb(25, 25, 158);
-  border: 1px solid rgb(0, 0, 0);
+  /* background-color: rgb(25, 25, 158); 
+  border: 1px solid rgb(0, 0, 0);*/
   margin: auto;
 }
 
@@ -58,6 +64,7 @@ html {
 .purple {
   background-color: rgb(170, 108, 228);
 }
+
 
 .empty_space {
   width: 50px;
