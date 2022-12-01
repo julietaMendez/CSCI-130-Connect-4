@@ -9,6 +9,7 @@ var board_color="blue";
 var player_id=0;
 var curr_player = document.getElementById("curr_player");
 
+create_tbl();
 
 function createColArr(max_col){
   var arr = new Array(); //keep track of spots taken within col at index i
@@ -18,10 +19,12 @@ function createColArr(max_col){
   return arr;
 }
 
-function create_tbl(tbl_size) {
+function create_tbl() {
+  let size_str = document.getElementById("board_size").innerText;
+
   // slice the id to get the board size 
-  max_col = tbl_size.slice(5);
-  max_row = tbl_size.slice(3,4);
+  max_col = size_str.slice(0,1);
+  max_row = size_str.slice(2);
 
   clear_tbl();
   //add rows to tbl
@@ -65,7 +68,7 @@ function clear_tbl(){
   for(i=0;i<max_col; i++){
     colArr[i] = 0;
   }
-  tbl.innerHTML = '';
+  tbl.innerHTML = "";
 }
 
 function find_space(curr_col, num_chips_in_col){
@@ -143,9 +146,7 @@ function set_board_color(input_color){
   }
 }
 
-function set_tbl_size(input_tbl_size, display){
-  max_col = input_tbl_size.slice(5);
-  max_row = input_tbl_size.slice(3,4);
-  let board_size_display = document.getElementById("board_size");
-  board_size_display.value=display;
+function set_tbl_size(row, col){
+  let board_display = document.getElementById("board_size");
+  board_display.value=row+"x"+col;
 }

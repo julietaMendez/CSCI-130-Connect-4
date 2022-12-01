@@ -47,8 +47,8 @@ require "header.php";
                 <h2>Choose a board color: </h2>
                 <input type="text" id="board_color" name="board_color" value="blue" >
                 <h2>Choose board size: </h2>
-                <input type="button" id="tbl6_7" value="6x7" onclick="set_tbl_size(this.id, this.value)">
-                <input type="button" id="tbl8_9" value="8x9" onclick="set_tbl_size(this.id, this.value)"><br>
+                <input type="button" id="6x7" value="6x7" onclick="set_tbl_size(6,7)">
+                <input type="button" id="8x9" value="8x9" onclick="set_tbl_size(8,9)"><br>
                 <input type="text" id="board_size" name="board_size" value="6x7">
             </fieldset>
             <input type="submit" value="Start Game" id="start_btn">

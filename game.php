@@ -11,14 +11,23 @@ require "header.php";
         <div class="select_options">
         <form>
             <fieldset>
-            <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
+            <h1>Welcome, <b> <?php echo $_SESSION['username']; ?></b></h1>
                 <a href="/CSCI-130-CONNECT-4/game_options.php">Go back</a>      
-                <label for="choose_size">Choose board size: </label>
-                <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
+                
+                 <div id = "board_size">
+                    <?php $decode = json_decode($_SESSION["board"]); 
+                    $board_width = $decode->board_width;
+                    $board_height = $decode->board_height;
+                    echo $board_width."x".$board_height;
+                    ?>
+                 </div>  
+                
+
+              <!--    <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
                 <input type="button" name=choose_size id="tbl8_9" value="8x9" onclick="create_tbl(this.id)">            
             
-                <!-- leave her for now, until colors are saved from prev page-->
-                <table id="player_color_table">
+                leave her for now, until colors are saved from prev page
+              <table id="player_color_table">
                     <tr>
                         <td>Player 1, choose your color</td>
                         <td><input type=button id="red" value="red" onclick="set_chip_color_p1(this.id)">
@@ -37,10 +46,11 @@ require "header.php";
                         </td>
                     </tr>
                 </table>
-                <!-- leave her for now -->
+
+                 leave her for now 
             </fieldset>
-        </form>
-        </div>
+        </form>-->
+      
 
         <div class="display">
         <section>  
@@ -62,8 +72,6 @@ require "header.php";
             <p id="curr_player">red</p>
         </section>
         </div>
-
-
 
         <table id="connect_4_table"></table>
 
