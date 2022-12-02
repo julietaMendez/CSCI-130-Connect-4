@@ -54,6 +54,6 @@ require "header.php";
             <input type="submit" value="Start Game" id="start_btn">
         </form>
     
-        <script src="table_class.js"></script>
+        <script src="game_options.js"></script>
     </body>
 </html>

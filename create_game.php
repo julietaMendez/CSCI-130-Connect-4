@@ -45,7 +45,7 @@ $board->board_color = $board_color;
 $board->curr_player = 1;
 $board->turns = 0;
 $board->time_elapse = 0;
-$board->empty_spaces = 0;
+$board->empty_spaces = $board_size[0]*$board_size[2];
 $board_json = json_encode($board);
 
 $_SESSION["player1"]=$player1_json;
@@ -53,9 +53,7 @@ $_SESSION["player2"]=$player2_json;
 $_SESSION["board"]=$board_json;
 
 echo "New records:<br> ". $player1_json."<br>". $player2_json ."<br>".$board_json."created successfully<br>";
- 
 
 
-
-header("Location: http://localhost/CSCI-130-Connect-4/game.php");
+header("Location: http://localhost/CSCI-130-Connect-4/connect4.php");
 ?>
