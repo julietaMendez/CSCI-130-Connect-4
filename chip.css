@@ -8,15 +8,32 @@ html {
   background-color: lightgray;
 }
 
-
 .chip1 {
   width: 50px;
   height: 50px;
-  /* background: rgb(228, 0, 0); */
   border-radius: 50px;
   margin: auto;
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
+
+.chip0 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
+ 
+#connect_4_table td{
+  padding:10px;
+  border: 1px transparent;
+}
+
+#connect_4_table {
+  /* background-color: rgb(25, 25, 158); */
+  margin: auto;
+}
+
 
 .darken{
   filter: brightness(75%);
@@ -25,54 +42,34 @@ html {
 
 .hilight{
   filter: brightness(2) saturate(2);
+  border: 1px solid white;
 }
 
-
-.chip0 {
-  width: 50px;
-  height: 50px;
-  background: rgb(251, 255, 0);
-  border-radius: 50px;
-  margin: auto;
-  box-shadow: 3px 3px rgb(0, 0, 0);
-}
- 
-#connect_4_table td{
-    width: 100px;
-    height: 100px;
-}
-
-#connect_4_table {
-  /* background-color: rgb(25, 25, 158); 
-  border: 1px solid rgb(0, 0, 0);*/
-  margin: auto;
-}
 
 #player_color_table {
   width: 100%;
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(223, 0, 0);
 }
 .blue {
   background-color: rgb(88, 88, 255);
 }
 .yellow {
-  background-color: yellow;
+  background-color: rgb(255, 216, 23);
 }
 .purple {
   background-color: rgb(170, 108, 228);
 }
 
-
 .empty_space {
   width: 50px;
   height: 50px;
-  background: rgb(0, 0, 0, 0.5);
+  background: rgb(0, 0, 0, 0.25);
   border-radius: 50px;
   margin: auto;
-  box-shadow: 2px 2px 2px lightblue;
+  box-shadow: 2px 2px 2px rgb(255, 255, 255);
 }
 
 .display {
