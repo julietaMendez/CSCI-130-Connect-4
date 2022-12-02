@@ -61,7 +61,7 @@ require "header.php";
 
         <div class="display">
         <section>  
-            <h2><?php echo $_SESSION['username'];?> color</h2>
+            <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
             <p id="p1_color">
             <?php $decode = json_decode($_SESSION["player1"]); 
             $p1_color = $decode->chip_color;
@@ -69,7 +69,7 @@ require "header.php";
             ?>
 
             </p>
-            <h2><?php echo  json_decode($_SESSION["player2"])->username?> Color: </h2>
+            <h2 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h2>
             <p id="p2_color">
             <?php $decode = json_decode($_SESSION["player2"]); 
             $p2_color = $decode->chip_color;
@@ -77,9 +77,8 @@ require "header.php";
             ?>
             </p>
 
-            
             <h2>Current player: </h2>
-            <p id="curr_player">red</p>
+            <p id="curr_player"><?php echo $_SESSION['username'];?></p>
         </section>
         </div>
 
