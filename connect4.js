@@ -1,12 +1,12 @@
-// table size variables
+// table variables
 let size_str = document.getElementById("board_size").innerText;
-var col_max = size_str.slice(0, 1);
-var row_max = size_str.slice(2);
+var col_max = size_str.slice(0, 1); // num of columns
+var row_max = size_str.slice(2); // num of rows
 var tbl = document.getElementById("connect_4_table");
 var colArr = createColArr(col_max); // the number of chips inside a column
 var empties; // amount of empty spaces left on the board
 var player_id = 1;
-
+var three_in_a_row = 0;
 
 function createColArr(col_max) {
   var arr = new Array(); //keep track of spots taken within col at index i
@@ -131,7 +131,8 @@ function place_chip(id) {
     //lose condition
 }
 
-function count_4_in_a_row(str_id, accum){
+
+function count_in_a_row(str_id, accum){
   let td = document.getElementById(str_id);
   let chip = (td.firstChild);
   if(chip.classList[1]==player_color){
@@ -158,7 +159,10 @@ function is_win(curr_row, curr_col){
   // starts from top/left diagonal and looks for winning condition going down/right.
   for(let i = left_top_row_start; i<row_max && left_top_col_start < col_max; i++){
     let str = (i)+"_"+(left_top_col_start++); // creates neighboring chips id
-    accum = count_4_in_a_row(str, accum); 
+    accum = count_in_a_row(str, accum); 
+    if(accum == 3){
+      three_in_a_row++;
+    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -178,7 +182,10 @@ function is_win(curr_row, curr_col){
   // starts from btm/left diagonal and looks for winning condition going up/right.
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
     let str = (left_btm_row_start--)+"_"+(j); // creates neighboring chips id
-    accum = count_4_in_a_row(str, accum); 
+    accum = count_in_a_row(str, accum); 
+    if(accum == 3){
+      three_in_a_row++;
+    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -188,7 +195,10 @@ function is_win(curr_row, curr_col){
   accum=0;
   for(let j=0; j<col_max; j++){
     let str = curr_row+"_"+(j); // creates neighboring chips id
-    accum = count_4_in_a_row(str, accum); 
+    accum = count_in_a_row(str, accum); 
+    if(accum == 3){
+      three_in_a_row++;
+    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -198,7 +208,10 @@ function is_win(curr_row, curr_col){
   accum=1; // starts at 1 to include the chip played
   for(let i=curr_row; i<row_max-1; i++){
     let str = (++curr_row)+"_"+(curr_col); // creates neighboring chips id
-    accum = count_4_in_a_row(str, accum); 
+    accum = count_in_a_row(str, accum); 
+    if(accum == 3){
+      three_in_a_row++;
+    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }

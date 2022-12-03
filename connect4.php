@@ -40,24 +40,18 @@ require "header.php";
 
                 <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
                 <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>
-                win: <?php echo json_decode($_SESSION["player1"])->win; ?>
-                lose: <?php echo json_decode($_SESSION["player1"])->lose; ?>
-                draw: <?php echo json_decode($_SESSION["player1"])->draw; ?>
+                <p>Wins: <?php echo json_decode($_SESSION["player1"])->win; ?></p>
+                <p>Losses: <?php echo json_decode($_SESSION["player1"])->lose; ?></p>
+                <p>Draws: <?php echo json_decode($_SESSION["player1"])->draw; ?></p>
                
                 <h2 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h2>
-                <p id="p2_color">
-                <?php $decode = json_decode($_SESSION["player2"]); 
-                $p2_color = $decode->chip_color;
-                echo $p2_color;
-                ?>
-                </p>
+                <p id="p2_color"><?php echo json_decode($_SESSION["player2"])->chip_color; ?> </p>
 
                 <h2>Current player: </h2>
                 <p id="curr_player"><?php echo $_SESSION['username'];?></p>
 
                 <h2>Remaining Turns:</h2>
                 <p id="empties"><?php echo json_decode($_SESSION["board"])->empty_spaces?></p>
-
            
             </div>
 
