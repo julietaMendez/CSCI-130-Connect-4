@@ -88,7 +88,7 @@ function find_space(curr_col, num_chips_in_col) {
 
 function place_chip(id) {
    // let curr_row = id.slice(0,1); // (starting included index, step)
-    let curr_col = id.slice(2); // (starting included index to end)
+    let curr_col = parseInt(id.slice(2)); // (starting included index to end)
     let str="";
     let num_chips_in_col = colArr[curr_col];
     let space_avail = find_space(curr_col, num_chips_in_col);
@@ -131,15 +131,19 @@ function is_win(curr_row, curr_col){
   
 
   var left_top_row_start = curr_row;
-  var left_top_col_start = 0
+  var left_top_col_start = curr_col;
+
   // to caculate the top left diagonal spot from curr position
-  for(let j=curr_col; j>0 && left_top_row_start>0; j--){
+  while(left_top_row_start>0 && left_top_col_start>0){
     left_top_row_start--;
+    left_top_col_start--;
   }
+  // console.log('start',left_top_row_start ,'_',left_top_col_start)
   // start from top/left diagonal and looks for winning condition going down/right.
-  for(i = left_top_row_start; i<row_max-1; i++){
+  for(let i = left_top_row_start; i<row_max-1 && left_top_col_start < col_max; i++){
     let str = (i)+"_"+(left_top_col_start++);
     let td = document.getElementById(str);
+   // console.log(str)
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
@@ -159,12 +163,12 @@ function is_win(curr_row, curr_col){
     left_btm_col_start--;
     left_btm_row_start++;
   }
-  console.log('start', left_btm_row_start,'_',left_btm_col_start)
+ // console.log('start', left_btm_row_start,'_',left_btm_col_start)
   //start from btm/left diagonal and looks for winning condition going up/right.
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
     let str = (left_btm_row_start--)+"_"+(j);
     let td = document.getElementById(str);
-    console.log(str)
+  //  console.log(str)
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
