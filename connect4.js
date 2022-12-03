@@ -129,11 +129,11 @@ function is_win(curr_row, curr_col){
 
   let accum = 0;
   
-  //  let str = (--curr_row)+"_"+(++curr_col);//btm left to top right
+
   var left_top_row_start = curr_row;
   var left_top_col_start = 0
   // to caculate the top left diagonal spot from curr position
-  for(let j=curr_col; j>0; j--){
+  for(let j=curr_col; j>0 && left_top_row_start>0; j--){
     left_top_row_start--;
   }
   // start from top/left diagonal and looks for winning condition going down/right.
@@ -152,20 +152,19 @@ function is_win(curr_row, curr_col){
       }
   }
 
-  var left_btm_row_start = row_max-1;
-  var left_btm_col_start = curr_col;
-  
   // to caculate the bottom left diagonal spot from curr position
-  for(let i=curr_row+1; i<row_max; i++){
-    --left_btm_col_start;
-    //console.log(i,' ',left_btm_col_start);
+  var left_btm_row_start=curr_row;
+  var left_btm_col_start=curr_col;
+  while(left_btm_row_start<row_max-1 && left_btm_col_start>0){
+    left_btm_col_start--;
+    left_btm_row_start++;
   }
- 
-  // start from btm/left diagonal and looks for winning condition going up/right.
-  for(let i = left_btm_col_start; i<col_max; i++){
-    let str = (left_btm_row_start--)+"_"+(i);
-    console.log(left_btm_col_start)
+  console.log('start', left_btm_row_start,'_',left_btm_col_start)
+  //start from btm/left diagonal and looks for winning condition going up/right.
+  for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
+    let str = (left_btm_row_start--)+"_"+(j);
     let td = document.getElementById(str);
+    console.log(str)
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
@@ -176,7 +175,8 @@ function is_win(curr_row, curr_col){
       if(accum == 4){
         return true;
       }
-  }
+   }
+  
 
   // check across the row starting at col0 for winning condition
   for(let j=0; j<col_max; j++){
