@@ -1,15 +1,16 @@
+// table size variables
 let size_str = document.getElementById("board_size").innerText;
-var max_col = size_str.slice(0, 1);
-var max_row = size_str.slice(2);
+var col_max = size_str.slice(0, 1);
+var row_max = size_str.slice(2);
 var tbl = document.getElementById("connect_4_table");
-var colArr = createColArr(max_col);
-var empties;
+var colArr = createColArr(col_max); // the number of chips inside a column
+var empties; // amount of empty spaces left on the board
 var player_id = 1;
 
 
-function createColArr(max_col) {
+function createColArr(col_max) {
   var arr = new Array(); //keep track of spots taken within col at index i
-  for (i = 0; i < max_col; i++) {
+  for (i = 0; i < col_max; i++) {
     arr[i] = 0;
   }
   return arr;
@@ -23,10 +24,10 @@ function create_tbl() {
 
   clear_tbl();
   //add rows to tbl
-  for (i = 0; i < max_row; i++) {
+  for (i = 0; i < row_max; i++) {
     let row = tbl.insertRow();
     // add cols to tbl. The cols have unique id's that reflect their location
-    for (j = 0; j < max_col; j++) {
+    for (j = 0; j < col_max; j++) {
       let cell = row.insertCell();
       cell.setAttribute("id", i + "_" + j);
       cell.setAttribute("onclick", "place_chip(this.id)");
@@ -61,7 +62,7 @@ function shade_col(id) {
 function normal_col(id) {
   // onmouseout: not on hover
   let col = id.slice(2);
-  for (row = 0; row < max_row; row++) {
+  for (row = 0; row < row_max; row++) {
     let cell = document.getElementById(row + "_" + col);
     cell.classList.remove("darken");
     cell.classList.remove("hilight");
@@ -70,7 +71,7 @@ function normal_col(id) {
 
 function clear_tbl() {
   colArr = []; //reset the array for a new board
-  for (i = 0; i < max_col; i++) {
+  for (i = 0; i < col_max; i++) {
     colArr[i] = 0;
   }
   tbl.innerHTML = "";
@@ -78,38 +79,139 @@ function clear_tbl() {
 
 function find_space(curr_col, num_chips_in_col) {
   let space_avail = 0;
-  if (num_chips_in_col <= max_row) {
+  if (num_chips_in_col <= row_max) {
     // valid placement
-    space_avail = max_row - (num_chips_in_col + 1); // calculates first available placement
+    space_avail = row_max - (num_chips_in_col + 1); // calculates first available placement
   }
   return space_avail; // returns index of row to place chip
 }
 
 function place_chip(id) {
-    let curr_col = id.slice(2);
-    let curr_row = id.slice(-1);
+   // let curr_row = id.slice(0,1); // (starting included index, step)
+    let curr_col = id.slice(2); // (starting included index to end)
     let str="";
     let num_chips_in_col = colArr[curr_col];
     let space_avail = find_space(curr_col, num_chips_in_col);
-    if(space_avail!= -1){
+
+    // prevents highlight error when there is no more spaces in the col
+    if(space_avail != -1){
       colArr[curr_col] += 1;
 
       // update div to put chip in place
       let chip = document.getElementById(space_avail + "_" + curr_col);
       if (player_id == 0) {
-        str = `<div class='chip${player_id} ${player1_color}'></div>`;
+        str = `<div class='chip ${player1_color}'></div>`;
       } else {
-        str = `<div class='chip${player_id} ${player2_color}'></div>`;
+        str = `<div class='chip ${player2_color}'></div>`;
       }
 
-      chip.innerHTML = str;
+      chip.innerHTML = str; //put built string into chip
+        //spot where chip is placed
+      console.log(is_win(space_avail, curr_col));
       update_curr_player();
       update_empties();
     }
+    // game draw condition. not a win
     if(empties == 0){
-      
+      alert('draw condition');
+      // player1 draw++ and total games++
     }
-    
+   
+    //lose condition
+}
+
+function is_win(curr_row, curr_col){
+  if(player_id==0){
+    player_color = `${player1_color}`;
+  }else{
+    player_color = `${player2_color}`;
+  }
+
+  let accum = 0;
+  
+  //  let str = (--curr_row)+"_"+(++curr_col);//btm left to top right
+  var left_top_row_start = curr_row;
+  var left_top_col_start = 0
+  // to caculate the top left diagonal spot from curr position
+  for(let j=curr_col; j>0; j--){
+    left_top_row_start--;
+  }
+  // start from top/left diagonal and looks for winning condition going down/right.
+  for(i = left_top_row_start; i<row_max-1; i++){
+    let str = (i)+"_"+(left_top_col_start++);
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+    if(chip.classList[1]==player_color){
+        accum++;
+      }
+      else{
+        accum=0;
+      }
+      if(accum == 4){
+        return true;
+      }
+  }
+
+  var left_btm_row_start = row_max-1;
+  var left_btm_col_start = curr_col;
+  
+  // to caculate the bottom left diagonal spot from curr position
+  for(let i=curr_row+1; i<row_max; i++){
+    --left_btm_col_start;
+    //console.log(i,' ',left_btm_col_start);
+  }
+ 
+  // start from btm/left diagonal and looks for winning condition going up/right.
+  for(let i = left_btm_col_start; i<col_max; i++){
+    let str = (left_btm_row_start--)+"_"+(i);
+    console.log(left_btm_col_start)
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+    if(chip.classList[1]==player_color){
+        accum++;
+      }
+      else{
+        accum=0;
+      }
+      if(accum == 4){
+        return true;
+      }
+  }
+
+  // check across the row starting at col0 for winning condition
+  for(let j=0; j<col_max; j++){
+    let str = curr_row+"_"+(j);
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+    if(chip.classList[1]==player_color){
+        accum++;
+      }
+      else{
+        accum=0;
+      }
+      if(accum == 4){
+        return true;
+      }
+  }
+
+let accum_down=1;
+  // check down for winning condition
+  for(let i=curr_row; i<row_max-1; i++){
+    let str = (++curr_row)+"_"+(curr_col);
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+      if(chip.classList[1]==player_color){
+        accum_down++;
+      }
+      else{
+        accum_down=0;
+      }
+      if(accum_down == 4){
+        return true;
+      }
+  }
+
+  return false;
 }
 
 //updates curr player display
@@ -129,10 +231,11 @@ function update_curr_player() {
   player_id == 1 ? (player_id = 0) : (player_id = 1);
 }
 
+// decrement the number of remaining turns/spaces left on the board
 function update_empties(){
-  let display = document.getElementById("empties");
-  empties = parseInt(display.innerText)-1;
-  display.innerText = empties;
+  let display = document.getElementById("empties"); 
+  empties = parseInt(display.innerText)-1;  
+  display.innerText = empties;  
 }
 
 create_tbl();

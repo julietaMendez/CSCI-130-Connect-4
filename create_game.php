@@ -22,6 +22,7 @@ $player1->username = $_SESSION['username'];
 $player1->chip_color = $p1_color;
 $player1->hints;
 $player1->win = $_SESSION['win'];
+$player1->lose = $_SESSION['lose'];
 $player1->total_games = $_SESSION['total_games'];
 $player1->total_time = $_SESSION['total_time'];
 $player1_json = json_encode($player1);

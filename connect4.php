@@ -28,46 +28,18 @@ require "header.php";
                         echo $board_color;
                         ?>
                     </div>
-                    
-
-                <!--    <input type="button" name=choose_size id="tbl6_7" value="6x7" onclick="create_tbl(this.id)">
-                    <input type="button" name=choose_size id="tbl8_9" value="8x9" onclick="create_tbl(this.id)">            
-                
-                    leave her for now, until colors are saved from prev page
-                <table id="player_color_table">
-                        <tr>
-                            <td>Player 1, choose your color</td>
-                            <td><input type=button id="red" value="red" onclick="set_chip_color_p1(this.id)">
-                                <input type=button id="lightblue" value="blue" onclick="set_chip_color_p1(this.id)">
-                                <input type=button id="yellow" value="yellow" onclick="set_chip_color_p1(this.id)">
-                                <input type=button id="purple" value="purple" onclick="set_chip_color_p1(this.id)">
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>Player 2, choose your color</td>
-                            <td><input type=button id="red" value="red" onclick="set_chip_color_p2(this.id)">
-                                <input type=button id="lightblue" value="blue" onclick="set_chip_color_p2(this.id)">
-                                <input type=button id="yellow" value="yellow" onclick="set_chip_color_p2(this.id)">
-                                <input type=button id="purple" value="purple" onclick="set_chip_color_p2(this.id)">
-                            </td>
-                        </tr>
-                    </table>
-
-                    leave her for now -->
+ 
                 </fieldset>
             </form>
         
             <div class="display">
          
                 <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
-                <p id="p1_color">
-                <?php $decode = json_decode($_SESSION["player1"]); 
-                $p1_color = $decode->chip_color;
-                echo $p1_color;
-                ?>
-
-                </p>
+                <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>
+                win: <?php echo json_decode($_SESSION["player1"])->win; ?>
+                lose: <?php echo json_decode($_SESSION["player1"])->lose; ?>
+                draw: <?php echo json_decode($_SESSION["player1"])->draw; ?>
+               
                 <h2 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h2>
                 <p id="p2_color">
                 <?php $decode = json_decode($_SESSION["player2"]); 
