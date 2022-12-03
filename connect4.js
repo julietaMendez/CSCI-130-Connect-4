@@ -131,102 +131,79 @@ function place_chip(id) {
     //lose condition
 }
 
-function is_win(curr_row, curr_col){
-  let accum = 0;
+function count_4_in_a_row(str_id, accum){
+  let td = document.getElementById(str_id);
+  let chip = (td.firstChild);
+  if(chip.classList[1]==player_color){
+      accum++;
+    }
+    else{
+      accum=0;
+    }
+    return accum;
+}
 
-  var left_top_row_start = curr_row;
+function is_win(curr_row, curr_col){
+  // 1. Top/Left Diagonal To Bottom/Right Diagonal -----------------------------
+  let accum = 0; // 4-in-a-row counter
+  var left_top_row_start = curr_row; 
   var left_top_col_start = curr_col;
+
   // to caculate the top left diagonal spot from curr position
   while(left_top_row_start>0 && left_top_col_start>0){
     left_top_row_start--;
     left_top_col_start--;
   }
-  // console.log('start',left_top_row_start ,'_',left_top_col_start)
-  // start from top/left diagonal and looks for winning condition going down/right.
+
+  // starts from top/left diagonal and looks for winning condition going down/right.
   for(let i = left_top_row_start; i<row_max && left_top_col_start < col_max; i++){
     let str = (i)+"_"+(left_top_col_start++);
-    let td = document.getElementById(str);
-    console.log(str)
-    let chip = (td.firstChild);
-    if(chip.classList[1]==player_color){
-        accum++;
-        console.log('tl ',accum)
-      }
-      else{
-        accum=0;
-      }
-      if(accum == 4){
-        console.log('tl win')
-        return true;
-      }
+    accum = count_4_in_a_row(str, accum); 
+    if(accum == 4){ // found 4-in-a-row
+      return true;
+    }
   }
-  accum=0;
 
-  // to caculate the bottom left diagonal spot from curr position
+  // 2. Bottom/Left Diagonal To Top/Right Diagonal -----------------------------
+  accum=0;
   var left_btm_row_start=curr_row;
   var left_btm_col_start=curr_col;
+
+  // to caculate the bottom left diagonal spot from curr position
   while(left_btm_row_start<row_max-1 && left_btm_col_start>0){
     left_btm_col_start--;
     left_btm_row_start++;
   }
- // console.log('start', left_btm_row_start,'_',left_btm_col_start)
-  //start from btm/left diagonal and looks for winning condition going up/right.
+
+  // starts from btm/left diagonal and looks for winning condition going up/right.
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
     let str = (left_btm_row_start--)+"_"+(j);
-    let td = document.getElementById(str);
-    //console.log(str)
-    let chip = (td.firstChild);
-    if(chip.classList[1]==player_color){
-        accum++;
-        console.log('lb ', accum)
-      }
-      else{
-        accum=0;
-      }
-      if(accum == 4){
-        console.log('lb')
-        return true;
-      }
+    accum = count_4_in_a_row(str, accum); 
+    if(accum == 4){ // found 4-in-a-row
+      return true;
+    }
    }
-   accum=0;
-  
-  // check across the row starting at col0 for winning condition
+
+  // 3. Horizontal from col0 to end --------------------------------------------
+  accum=0;
   for(let j=0; j<col_max; j++){
     let str = curr_row+"_"+(j);
-    let td = document.getElementById(str);
-    let chip = (td.firstChild);
-    if(chip.classList[1]==player_color){
-        accum++;
-        console.log('across ',accum)
-      }
-      else{
-        accum=0;
-      }
-      if(accum == 4){
-        console.log('across win')
-        return true;
-      }
+    accum = count_4_in_a_row(str, accum); 
+    if(accum == 4){ // found 4-in-a-row
+      return true;
+    }
   }
 
-let accum_down=1;
-  // check down for winning condition
+  // 4. Down -------------------------------------------------------------------
+  accum=1;
   for(let i=curr_row; i<row_max-1; i++){
     let str = (++curr_row)+"_"+(curr_col);
-    let td = document.getElementById(str);
-    let chip = (td.firstChild);
-      if(chip.classList[1]==player_color){
-        accum_down++;
-        console.log('down ',accum)
-      }
-      else{
-        accum_down=0;
-      }
-      if(accum_down == 4){
-        console.log('down win')
-        return true;
-      }
+    accum = count_4_in_a_row(str, accum); 
+    if(accum == 4){ // found 4-in-a-row
+      return true;
+    }
   }
-  console.log(accum)
+
   return false;
 }
 
