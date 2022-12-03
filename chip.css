@@ -44,7 +44,7 @@ html {
 }
 
 .show_popup:hover{
-  font-size: 60px;
+  font-size: 40px;
   transition: .5s ease-in-out;
 }
 
