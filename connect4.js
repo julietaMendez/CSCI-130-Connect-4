@@ -99,15 +99,21 @@ function place_chip(id) {
 
       // update div to put chip in place
       let chip = document.getElementById(space_avail + "_" + curr_col);
-      if (player_id == 0) {
-        str = `<div class='chip ${player1_color}'></div>`;
-      } else {
-        str = `<div class='chip ${player2_color}'></div>`;
+
+      if(player_id == 0){
+        player_color = `${player1_color}`;
+      }else{
+        player_color = `${player2_color}`;
       }
 
+      let str = "<div class='chip "+player_color+"'></div>";
+    
       chip.innerHTML = str; //put built string into chip
         //spot where chip is placed
-      console.log(is_win(space_avail, curr_col));
+      if(is_win(space_avail, curr_col)){
+        alert(player_color, "WINNER");
+        console.log(player_color, "WINNER");
+      };
       update_curr_player();
       update_empties();
     }
@@ -121,18 +127,10 @@ function place_chip(id) {
 }
 
 function is_win(curr_row, curr_col){
-  if(player_id==0){
-    player_color = `${player1_color}`;
-  }else{
-    player_color = `${player2_color}`;
-  }
-
   let accum = 0;
-  
 
   var left_top_row_start = curr_row;
   var left_top_col_start = curr_col;
-
   // to caculate the top left diagonal spot from curr position
   while(left_top_row_start>0 && left_top_col_start>0){
     left_top_row_start--;
@@ -140,21 +138,24 @@ function is_win(curr_row, curr_col){
   }
   // console.log('start',left_top_row_start ,'_',left_top_col_start)
   // start from top/left diagonal and looks for winning condition going down/right.
-  for(let i = left_top_row_start; i<row_max-1 && left_top_col_start < col_max; i++){
+  for(let i = left_top_row_start; i<row_max && left_top_col_start < col_max; i++){
     let str = (i)+"_"+(left_top_col_start++);
     let td = document.getElementById(str);
-   // console.log(str)
+    console.log(str)
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
+        console.log('tl ',accum)
       }
       else{
         accum=0;
       }
       if(accum == 4){
+        console.log('tl win')
         return true;
       }
   }
+  accum=0;
 
   // to caculate the bottom left diagonal spot from curr position
   var left_btm_row_start=curr_row;
@@ -168,20 +169,22 @@ function is_win(curr_row, curr_col){
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
     let str = (left_btm_row_start--)+"_"+(j);
     let td = document.getElementById(str);
-  //  console.log(str)
+    //console.log(str)
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
+        console.log('lb ', accum)
       }
       else{
         accum=0;
       }
       if(accum == 4){
+        console.log('lb')
         return true;
       }
    }
+   accum=0;
   
-
   // check across the row starting at col0 for winning condition
   for(let j=0; j<col_max; j++){
     let str = curr_row+"_"+(j);
@@ -189,11 +192,13 @@ function is_win(curr_row, curr_col){
     let chip = (td.firstChild);
     if(chip.classList[1]==player_color){
         accum++;
+        console.log('across ',accum)
       }
       else{
         accum=0;
       }
       if(accum == 4){
+        console.log('across win')
         return true;
       }
   }
@@ -206,15 +211,17 @@ let accum_down=1;
     let chip = (td.firstChild);
       if(chip.classList[1]==player_color){
         accum_down++;
+        console.log('down ',accum)
       }
       else{
         accum_down=0;
       }
       if(accum_down == 4){
+        console.log('down win')
         return true;
       }
   }
-
+  console.log(accum)
   return false;
 }
 
