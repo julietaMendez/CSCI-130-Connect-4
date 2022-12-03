@@ -33,7 +33,11 @@ require "header.php";
             </form>
         
             <div class="display">
-         
+                <!-- popup screens  -->
+              
+                <div id="draw_popup" class="hidden"> </div>
+                <div id="win_popup" class="hidden"> </div>
+
                 <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
                 <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>
                 win: <?php echo json_decode($_SESSION["player1"])->win; ?>

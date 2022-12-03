@@ -111,16 +111,21 @@ function place_chip(id) {
       chip.innerHTML = str; //put built string into chip
         //spot where chip is placed
       if(is_win(space_avail, curr_col)){
-        alert(player_color, "WINNER");
-        console.log(player_color, "WINNER");
+        // dynamically create winner popup w/curr player's name
+        let popup = document.getElementById("win_popup");
+        popup.innerHTML = "<h1>"+curr_player.innerText+" Wins!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
+        popup.classList.remove('hidden');
+        popup.classList.add('show_popup');
       };
       update_curr_player();
       update_empties();
     }
     // game draw condition. not a win
     if(empties == 0){
-      alert('draw condition');
-      // player1 draw++ and total games++
+      let popup = document.getElementById("draw_popup");
+      popup.innerHTML = "<h1>DRAW!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
+      popup.classList.remove('hidden');
+      popup.classList.add('show_popup');
     }
    
     //lose condition
@@ -247,6 +252,10 @@ function update_empties(){
   let display = document.getElementById("empties"); 
   empties = parseInt(display.innerText)-1;  
   display.innerText = empties;  
+}
+
+function redirect_game_options(){
+  window.location.replace("/CSCI-130-CONNECT-4/game_options.php");
 }
 
 create_tbl();
