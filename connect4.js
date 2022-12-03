@@ -157,7 +157,7 @@ function is_win(curr_row, curr_col){
 
   // starts from top/left diagonal and looks for winning condition going down/right.
   for(let i = left_top_row_start; i<row_max && left_top_col_start < col_max; i++){
-    let str = (i)+"_"+(left_top_col_start++);
+    let str = (i)+"_"+(left_top_col_start++); // creates neighboring chips id
     accum = count_4_in_a_row(str, accum); 
     if(accum == 4){ // found 4-in-a-row
       return true;
@@ -177,7 +177,7 @@ function is_win(curr_row, curr_col){
 
   // starts from btm/left diagonal and looks for winning condition going up/right.
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
-    let str = (left_btm_row_start--)+"_"+(j);
+    let str = (left_btm_row_start--)+"_"+(j); // creates neighboring chips id
     accum = count_4_in_a_row(str, accum); 
     if(accum == 4){ // found 4-in-a-row
       return true;
@@ -187,7 +187,7 @@ function is_win(curr_row, curr_col){
   // 3. Horizontal from col0 to end --------------------------------------------
   accum=0;
   for(let j=0; j<col_max; j++){
-    let str = curr_row+"_"+(j);
+    let str = curr_row+"_"+(j); // creates neighboring chips id
     accum = count_4_in_a_row(str, accum); 
     if(accum == 4){ // found 4-in-a-row
       return true;
@@ -195,9 +195,9 @@ function is_win(curr_row, curr_col){
   }
 
   // 4. Down -------------------------------------------------------------------
-  accum=1;
+  accum=1; // starts at 1 to include the chip played
   for(let i=curr_row; i<row_max-1; i++){
-    let str = (++curr_row)+"_"+(curr_col);
+    let str = (++curr_row)+"_"+(curr_col); // creates neighboring chips id
     accum = count_4_in_a_row(str, accum); 
     if(accum == 4){ // found 4-in-a-row
       return true;
