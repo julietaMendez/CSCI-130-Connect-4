@@ -139,7 +139,6 @@ function total_3_in_a_row(curr_row, curr_col){
   let traverses = 0;
 
   // Down ----------------------------------------------------------------------
-  traverses=0;
   for(let i=curr_row; i < row_max && traverses < 3; i++){
     // console.log("i, row_max, traverses: ", i, row_max, traverses);
     let str = i+"_"+curr_col; // creates neighboring chips id
@@ -147,7 +146,8 @@ function total_3_in_a_row(curr_row, curr_col){
     // console.log("accum3: ", accum3)
     if(accum3 == 3){
       three_in_a_rows++;
-      update_3_in_a_row_stat(player_color, three_in_a_rows); // assign the correct player the total of 3-in-a-rows
+      console.log("10")
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
   }
@@ -157,11 +157,12 @@ function total_3_in_a_row(curr_row, curr_col){
   accum3=0;
   for(let j=curr_col; j > 0 && traverses < 3; j--){
     let str = curr_row+"_"+(j); // creates neighboring chips id
-    console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
+    // console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
 
     accum3 = count_in_a_row(str, accum3); 
-    console.log("accum3: ", accum3)
+    // console.log("accum3: ", accum3)
     if(accum3 == 3){ // found 3-in-a-row
+      console.log("9")
       update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
@@ -172,11 +173,12 @@ function total_3_in_a_row(curr_row, curr_col){
   accum3=0;
   for(let j=curr_col; j < col_max && traverses < 3; j++){
     let str = curr_row+"_"+(j); // creates neighboring chips id
-    console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
+    // console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
 
     accum3 = count_in_a_row(str, accum3); 
-    console.log("accum3: ", accum3)
+    // console.log("accum3: ", accum3)
     if(accum3 == 3){ // found 3-in-a-row
+      console.log("8")
       update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
@@ -193,21 +195,116 @@ function total_3_in_a_row(curr_row, curr_col){
           let td = document.getElementById(str);
           let chip = (td.firstChild);
           if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+            console.log("7")
             update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
           }
         }
       }
-  
   }
 
-    // 1. Top/Left Diagonal To Bottom/Right Diagonal -----------------------------
-    // for(let i = curr_row; i<row_max && curr_col < col_max; i++){
-    //   let str = (i)+"_"+(left_top_col_start++); // creates neighboring chips id
-    //   accum = count_in_a_row(str, accum); 
-    //   if(accum == 4){ // found 4-in-a-row
-    //     return true;
-    //   }
-    // }
+  // \ Diagonal: 2 to the TOP/LEFT ---------------------------------------------------
+  let col = curr_col;
+  traverses=0;
+  accum3=0;
+  for(let i = curr_row; i > 0 && col > 0 && traverses < 3; i--){
+    let str = (i)+"_"+(col); // creates neighboring chips id
+    // console.log("i, j, traverses, str: ", i, j, traverses, str);
+    accum3 = count_in_a_row(str, accum3); 
+    // console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      console.log("6")
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+    col--;
+  }
+
+  // \ Diagonal: 2 to the BOTTOM/RIGHT ---------------------------------------------------
+  col = curr_col;
+  traverses=0;
+  accum3=0;
+  for(let i = curr_row; i < row_max && col < col_max && traverses < 3; i++){
+    let str = (i)+"_"+(col); // creates neighboring chips id
+    // console.log("i, j, traverses, str: ", i, j, traverses, str);
+    accum3 = count_in_a_row(str, accum3); 
+    // console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      console.log("5")
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+    col++;
+  }
+
+ // Diagonal \: 1 to the TOP/LEFT and 1 to the BOTTOM/RIGHT -----------------------------
+  if(curr_row > 0 && curr_col > 0){
+    let str = (curr_row-1)+"_"+(curr_col-1); // creates TOP/LEFT neighbors chips id
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);   
+    if(chip.classList[1]==player_color){ // check if TOP/LEFT neighbor is the same color
+      if(curr_row < row_max-1 && curr_col < col_max-1){ // if so, check if BOTTOM/RIGHT neighbor is the same color
+        let str = (curr_row+1)+"_"+(curr_col+1); // creates BOTTOM/RIGHT neighbors chips id
+        let td = document.getElementById(str);
+        let chip = (td.firstChild);
+        if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+          console.log("4")
+          update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+        }
+      }
+    }
+  }
+
+  // Diagonal /: 2 to the TOP/RIGHT ---------------------------------------------------
+  col = curr_col;
+  traverses=0;
+  accum3=0;
+  for(let i = curr_row; i > 0 && col < col_max && traverses < 3; i--){
+    let str = (i)+"_"+(col); // creates neighboring chips id
+    // console.log("i, j, traverses, str: ", i, j, traverses, str);
+    accum3 = count_in_a_row(str, accum3); 
+    // console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      console.log("3")
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+    col++;
+  }
+
+  // Diagonal /: 2 to the BOTTOM/LEFT ---------------------------------------------------
+  col = curr_col;
+  traverses=0;
+  accum3=0;
+  for(let i = curr_row; i < row_max && col > 0 && traverses < 3; i++){
+    let str = (i)+"_"+(col); // creates neighboring chips id
+    // console.log("i, j, traverses, str: ", i, j, traverses, str);
+    accum3 = count_in_a_row(str, accum3); 
+    // console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      console.log("2")
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+    col--;
+  }
+
+  // Diagonal /: 1 to the BOTTOM/LEFT and 1 to the TOP/RIGHT -----------------------------
+  if(curr_row < row_max-1 && curr_col > 0){
+    let str = (curr_row+1)+"_"+(curr_col-1); // creates BOTTOM/LEFT neighbors chips id
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+    if(chip.classList[1]==player_color){ // check if BOTTOM/LEFT neighbor is the same color
+      if(curr_row > 0 && curr_col < col_max-1){ // if so, check if TOP/RIGHT neighbor is the same color
+        let str = (curr_row-1)+"_"+(curr_col+1); // creates TOP/RIGHT neighbors chips id
+        let td = document.getElementById(str);
+        let chip = (td.firstChild);
+        if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+          console.log("1")
+          update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+        }
+      }
+    } 
+  }
 
 }
 
