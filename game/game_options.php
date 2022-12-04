@@ -1,8 +1,8 @@
 <?php
 require "../database/header.php";
 include "../menu/navbar.php";
-
 ?>
+
 <!-- The players will choose their board size and chip colors here, then navigate to the board game page -->
 <!DOCTYPE html>
 <html>

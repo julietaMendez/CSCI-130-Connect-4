@@ -1,5 +1,6 @@
 <?php
 require "../database/header.php";
+include "../menu/navbar.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +13,9 @@ require "../database/header.php";
             <form>
                 <fieldset>
                 <!-- <h1>Welcome, <b> <?php echo $_SESSION['username']; ?></b></h1> -->
-                    <a href="/CSCI-130-CONNECT-4/game/game_options.php">Go back</a>      
-                    
+                    <a href="/CSCI-130-CONNECT-4/game/game_options.php">Return To Game Options</a>      
+                    <a href="/CSCI-130-CONNECT-4/game/connect4.php">Restart</a>   
+
                     <div id = "board_size">
                         <?php $decode = json_decode($_SESSION["board"]); 
                         $board_width = $decode->board_width;
