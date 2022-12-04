@@ -12,13 +12,13 @@ if (isset($_POST["asc_win"])) {
 if (isset($_POST["asc_time"])) {
 	$sql = "SELECT username, win, lose, draw, total_games, total_time FROM player_tbl ORDER BY total_time ASC LIMIT 3";
 }
-if (isset($_POST["des_time"])) {
+if (isset($_POST["desc_time"])) {
 	$sql = "SELECT username, win, lose, draw, total_games, total_time FROM player_tbl ORDER BY total_time DESC LIMIT 3";
 }
-if (isset($_POST["asc_time"])) {
+if (isset($_POST["asc_game"])) {
 	$sql = "SELECT username, win, lose, draw, total_games, total_time FROM player_tbl ORDER BY total_games ASC LIMIT 3";
 }
-if (isset($_POST["des_time"])) {
+if (isset($_POST["desc_game"])) {
 	$sql = "SELECT username, win, lose, draw, total_games, total_time FROM player_tbl ORDER BY total_games DESC LIMIT 3";
 }
 
@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
 	$newPlayer->lose=($row["lose"]);
 	$newPlayer->draw=($row["draw"]);
 	$newPlayer->total_games=($row["total_games"]);
-	$newPlayer->total_time=$row["total_time"];
+	$newPlayer->total_time=($row["total_time"]);
 	$leaders_arr[$i]=$newPlayer;
 	$i+=1;
 	}
@@ -43,6 +43,7 @@ if ($result->num_rows > 0) {
 	echo $leaders;
 }else {
 	$bad1=[ 'bad' => 1];
+	
 	echo json_encode($bad1);	
 }
 
