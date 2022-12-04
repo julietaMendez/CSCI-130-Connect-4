@@ -1,6 +1,8 @@
+<?php 
+require "../database/header.php";
+include "../menu/navbar.php";
+?>
 
-
-<?php include "navbar.php"?>
 <!DOCTYPE html>
 <html>
 <head>
