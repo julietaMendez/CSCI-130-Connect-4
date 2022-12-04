@@ -60,7 +60,7 @@ include "../menu/navbar.php";
                 <p id="empties"><?php echo json_decode($_SESSION["board"])->empty_spaces?></p>
 
                 <h3>Time Elapsed:</p>
-                <div class="timerDisplay">
+                <div id="timerDisplay">
                     00 : 00 : 00 : 000
                 </div>
             </div>

@@ -403,7 +403,7 @@ function redirect_game_options(){
 
 // Time Elapsed Functions -------------------------------------------------------------
 let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
-let timerRef = document.querySelector('.timerDisplay');
+let timerRef = document.querySelector('#timerDisplay');
 let int = null;
 
 function startTimer(){
