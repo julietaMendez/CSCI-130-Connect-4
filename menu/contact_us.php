@@ -1,6 +1,6 @@
 
 
-<?php include "navbar.html"?>
+<?php include "navbar.php"?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
         <a class="active" href="contact_us.html">Contact Us</a>
     </div>  -->
 
-    <div class="grid-container">
+    <div class="contact-section">
         <div>
             <h2>Malee Seechan</h2>
             <img src="../img/malee.png" alt="Malee img" height="60%" width="50%" class="center">

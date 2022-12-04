@@ -1,5 +1,5 @@
 
-<?php include "navbar.html"?>
+<?php include "navbar.php"?>
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="menu.css"><head>

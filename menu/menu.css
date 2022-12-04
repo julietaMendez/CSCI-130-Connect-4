@@ -16,68 +16,42 @@ h2{
     margin:10px;
 }
 
-#instructions{ 
-    background: lightgray;
-    padding: 20px;
-    margin:50px;
-}
-
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 50%; */
-    padding: 20px;
-  }
-
-/* Menu page */
-#welcome{
-color:white;
-padding:20px;
-margin:20px;
-}
-
-#menu{
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-}
-
-/* #menu{
-    margin: 0;
-    padding:20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid green; 
-} */
-
-#navigate{
-    background-color: #b1102b;
-    text-align: center;
-    padding: 20px 40px;
-    margin:20px;
-    font-size: 2em;
-    
-}
-
-a{
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-}
-
-a:hover { color: white; }
-
-
-/* Navigation Bar */
-.topnav {
+/* Navigation Bar -------------------------------- */
+/* .topnav {
     background-color: #b1102b;
     overflow: hidden;
     margin: 0px 0px 30px 0px;
+    width: 70%;
+} */
+
+/* #contact{
+    text-align: center;
+    color:gray;
+    font-size: 20px;
+} */
+
+#username{
+    background-color: gray;
+    width:10%;
+    text-align: center;
+    float:right;
 }
+
+.topnav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    background-color: #b1102b;
+    margin: 0px 0px 30px 0px;
+    padding: 0 30px;
+}
+
+#nav_split{
+    text-align: center;
+    color:gray;
+    font-size: 20px;
+}
+
 
 .topnav a {
     float: left;
@@ -98,8 +72,44 @@ a:hover { color: white; }
     color: white;
 }
 
-/* Contact Us */
-.grid-container {
+/* Menu page ---------------------------------- */
+#welcome{
+    color:white;
+    padding:20px;
+    margin:20px;
+}
+
+#menu{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+#navigate{
+    background-color: #b1102b;
+    text-align: center;
+    padding: 20px 40px;
+    margin:20px;
+    font-size: 2em;
+}
+
+/* Help page ---------------------------------- */
+#instructions{ 
+    background: lightgray;
+    padding: 20px;
+    margin:50px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+/* Contact Us ---------------------------------- */
+.contact-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -110,3 +120,12 @@ a:hover { color: white; }
     color:gray;
     font-size: 20px;
 }
+
+/* Email Links */
+a{
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+a:hover { color: white; }
