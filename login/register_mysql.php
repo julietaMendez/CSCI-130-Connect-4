@@ -69,8 +69,13 @@ if(empty($err_arr)){
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
-            // Redirect to game page and start session
-            $_SESSION['username'] = $username;      
+            // Redirect to game page and start session with default values
+            $_SESSION['username'] = $username;
+            $_SESSION['win'] = 0; 
+            $_SESSION['lose'] = 0; 
+            $_SESSION['draw'] = 0; 
+            $_SESSION['total_games'] = 0;  
+            $_SESSION['total_time'] = 0;      
             header("Location: ../game_options.php");
             exit;
         } else{
