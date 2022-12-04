@@ -1,5 +1,5 @@
 <?php
-// include "player_class.php";
+include "player_class.php";
 $db_params = parse_ini_file("db_credentials.ini");
 define('DB_SERVER',  $db_params['server']);
 define('DB_USERNAME',  $db_params['username']);
@@ -13,14 +13,14 @@ if ($conn->connect_error) {
 echo "Connected successfully <br>";
 $db_name="connect4_db";
 // // Create the database
-// $sql = "CREATE DATABASE ". $db_name;
-// if ($conn->query($sql) === TRUE) {
-//     echo "Database ". $db_name ." created successfully<br>";
-// } else {
-//     echo "Error creating database: " . $conn->error ."<br>";
-// }
-// // close the connection
-// $conn->close();
+$sql = "CREATE DATABASE ". $db_name;
+if ($conn->query($sql) === TRUE) {
+    echo "Database ". $db_name ." created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error ."<br>";
+}
+// close the connection
+$conn->close();
 
 // Create connection
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, $db_name);
@@ -47,26 +47,32 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
+$stmt = $conn->prepare("INSERT INTO player_tbl (username, password, win, lose, draw, total_games, total_time) VALUES (?,?,?,?,?,?,?)");
+if ($stmt==FALSE) {
+	echo "There is a problem with prepare <br>";
+	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
+}
+// bind parameters
+$stmt->bind_param("ssiiiii", $username, $password, $win, $lose, $draw, $total_games, $total_time);
 
-// $stmt = $conn->prepare("INSERT INTO player_tbl (username, password, win, lose, draw, total_games, total_time) VALUES (?,?,?,?,?,?,?)");
-// if ($stmt==FALSE) {
-// 	echo "There is a problem with prepare <br>";
-// 	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
-// }
-// // bind parameters
-// $stmt->bind_param("ssiiiii", $username, $password, $win, $lose, $draw, $total_games, $total_time);
-// //create player 
-// $player1 = new Player();
-// $username = $player1->username;
-// $password = $player1->password;
-// $win = $player1->win;
-// $lose = $player1->lose;
-// $draw = $player1->draw;
-// $total_games = $player1->total_games;
-// $total_time = $player1->total_time;
-// $stmt->execute();
-// $stmt->close();
-// $conn->close();
+// load json data into table
+$json_str = file_get_contents('./leaderboard/generated.json');
+$players_arr = json_decode($json_str);
+$count = count($players_arr);
+//create player
+for ($i=0;$i<$count;$i++) {
+    $username = $players_arr[$i]->username;
+    $password = $players_arr[$i]->password;
+    $win = $players_arr[$i]->win;
+    $lose = $players_arr[$i]->lose;
+    $draw = $players_arr[$i]->draw;
+    $total_games = $players_arr[$i]->total_games;
+    $total_time = $players_arr[$i]->total_time;
+    $stmt->execute();
+    echo $username.' '.$password.' '.$win.' '.$lose.' '.$draw.' '.$total_games.' '.$total_time;
+}
+$stmt->close();
+$conn->close();
 
 // // no need to save player 2 to the db
 // $player = new Player();

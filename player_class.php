@@ -12,7 +12,7 @@ class Player implements JsonSerializable{
 
     public function __construct(){
         $this->username = generateRandomString();
-        // $this->password = generateRandomString();
+        $this->password = generateRandomString();
         $this->user_id = 0;
         $this->chip_color = generateRandomString();
         $this->hints = [];
@@ -27,7 +27,7 @@ class Player implements JsonSerializable{
     public function jsonSerialize() {
         return [
             'username' => $this->username,
-            // 'password' => $this->password,
+            'password' => $this->password,
             'user_id' => $this->user_id,
             'chip_color' => $this->chip_color,
             'hints' => $this->hints,
@@ -42,7 +42,7 @@ class Player implements JsonSerializable{
     // std obj -> movie Object
     public function Set($json){
         $this->user_name = $json['username'];
-        // $this->password = $json['password'];
+        $this->password = $json['password'];
         $this->user_id = $json['user_id'];
         $this->chip_color = $json['chip_color'];
         $this->hints = $json['hints'];
