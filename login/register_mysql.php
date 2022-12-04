@@ -87,7 +87,8 @@ if(empty($err_arr)){
 } else {
     // return array of errors to login page
     $_SESSION['reg_err_message'] = $err_arr;    
-    header("Location: \CSCI-130-CONNECT-4\login\login_register_page.php");
+    // header("Location: \CSCI-130-CONNECT-4\login\login_register_page.php");
+    header("Location: \CSCI-130-CONNECT-4\menu\menu.php");
 }
 // Close connection
 mysqli_close($conn);
