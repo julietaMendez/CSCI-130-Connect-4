@@ -1,3 +1,6 @@
+
+
+<?php include "navbar.html"?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +8,12 @@
 </head>
 
 <body>
-    <div class="topnav">
+    <!-- <div class="topnav">
         <a href="../connect4.php">Play</a>
         <a href="help.html">Instructions</a>
         <a href="../leaderboard/leaderboard_page.php">Leaderboard</a>
         <a class="active" href="contact_us.html">Contact Us</a>
-    </div> 
+    </div>  -->
 
     <div class="grid-container">
         <div>

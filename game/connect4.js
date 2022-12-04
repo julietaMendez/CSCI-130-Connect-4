@@ -394,7 +394,7 @@ function update_empties(){ // decrement the number of remaining turns/spaces lef
 }
 
 function redirect_game_options(){
-  window.location.replace("/CSCI-130-CONNECT-4/game_options.php");
+  window.location.replace("/CSCI-130-CONNECT-4/game/game_options.php");
 }
 
 create_tbl();

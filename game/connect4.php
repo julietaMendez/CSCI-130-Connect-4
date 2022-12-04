@@ -1,5 +1,5 @@
 <?php
-require "header.php";
+require "../database/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ require "header.php";
             <form>
                 <fieldset>
                 <!-- <h1>Welcome, <b> <?php echo $_SESSION['username']; ?></b></h1> -->
-                    <a href="/CSCI-130-CONNECT-4/game_options.php">Go back</a>      
+                    <a href="/CSCI-130-CONNECT-4/game/game_options.php">Go back</a>      
                     
                     <div id = "board_size">
                         <?php $decode = json_decode($_SESSION["board"]); 

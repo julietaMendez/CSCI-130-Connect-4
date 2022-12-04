@@ -1,12 +1,7 @@
 <?php
-require "header.php";
+require "../database/header.php";
+include "../menu/navbar.html";
 
-// session_start();
-// if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-//     session_destroy(); 
-//     header("Location: ./login/login_register_page.php");
-//     exit;
-//   }
 ?>
 <!-- The players will choose their board size and chip colors here, then navigate to the board game page -->
 <!DOCTYPE html>
@@ -16,11 +11,6 @@ require "header.php";
     </head>
     <body>
         <header>
-            <h1><?php echo $_SESSION['win']; ?></h1>
-            <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
-            <form width="100%" action="login/logout.php" method="POST">
-                <input type="submit" value="Log out">
-            </form>
         </header>
         <form class="options" width="100%" action="create_game.php" method="POST">
             <fieldset>

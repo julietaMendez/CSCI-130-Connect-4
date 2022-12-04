@@ -1,6 +1,6 @@
 <?php
 // connect to db
-require_once '../db_connect.php';
+require_once '../database/db_connect.php';
 
 session_start();
 $err_arr = array();   //array of errors to return 
@@ -76,7 +76,7 @@ if(empty($err_arr)){
             $_SESSION['draw'] = 0; 
             $_SESSION['total_games'] = 0;  
             $_SESSION['total_time'] = 0;      
-            header("Location: ../game_options.php");
+            header("Location: ../menu/menu.php");
             exit;
         } else{
             array_push($err_arr, "Something went wrong. Please try again later.");
@@ -85,10 +85,9 @@ if(empty($err_arr)){
     // Close statement
     mysqli_stmt_close($stmt);
 } else {
-    // return array of errors to login page
+    // return array of errors to login page. should not go to menu page if there are errors.
     $_SESSION['reg_err_message'] = $err_arr;    
-    // header("Location: \CSCI-130-CONNECT-4\login\login_register_page.php");
-    header("Location: \CSCI-130-CONNECT-4\menu\menu.php");
+    header("Location: \CSCI-130-CONNECT-4\login\login_register_page.php");
 }
 // Close connection
 mysqli_close($conn);

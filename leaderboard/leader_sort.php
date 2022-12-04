@@ -1,6 +1,6 @@
 <?php
-include "../player_class.php";
-include "../db_connect.php";
+include "../game/player_class.php";
+include "../database/db_connect.php";
 
 
 if (isset($_POST["desc_win"])) {

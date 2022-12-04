@@ -1,8 +1,8 @@
 <?php
 include "player_class.php";
 include "board_class.php";
-include "db_connect.php";
-require "header.php";
+include "../database/db_connect.php";
+require "../database/header.php";
 
 // Get inputs from form post to create classes
 if (isset($_POST['p1_color'])){$p1_color = $_POST['p1_color'];}
@@ -56,5 +56,5 @@ $_SESSION["board"]=$board_json;
 echo "New records:<br> ". $player1_json."<br>". $player2_json ."<br>".$board_json."created successfully<br>";
 
 
-header("Location: http://localhost/CSCI-130-Connect-4/connect4.php");
+header("Location: http://localhost/CSCI-130-Connect-4/game/connect4.php");
 ?>
