@@ -67,8 +67,8 @@ $err_arr = array();
       
     // return array of errors to login page
     $_SESSION['login_err_message'] = $err_arr;    
-    //  header("Location: ./login/login_register_page.php");
-    header("Location: \CSCI-130-CONNECT-4\menu\menu.php");
+      header("Location: ../login/login_register_page.php");
+    //header("Location: \CSCI-130-CONNECT-4\menu\menu.php");
     
     // Close connection
     mysqli_close($conn);
