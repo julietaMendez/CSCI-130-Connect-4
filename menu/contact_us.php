@@ -20,14 +20,14 @@
             <h2>Malee Seechan</h2>
             <img src="../img/malee.png" alt="Malee img" height="60%" width="50%" class="center">
             <p id="contact"><a href="mailto:mseechan@mail.fresnostate.edu ">mseechan@mail.fresnostate.edu </a></p>
-    
+            <p id="contact">I am a senior at Fresno State and graduating in the Fall of 2022!</p>
         </div>
 
         <div>
             <h2>Julieta Mendez</h2>
             <img src="../img/julie.png" alt="Julie img" height="60%" width="50%" class="center">
             <p id="contact"><a href="mailto:jmendez1234@mail.fresnostate.edu ">jmendez1234@mail.fresnostate.edu </a></p>
-    
+            <p id="contact">I am a senior at Fresno State and graduating in the Spring of 2023!</p>
         </div>
       
     </div>

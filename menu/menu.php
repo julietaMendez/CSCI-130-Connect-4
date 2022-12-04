@@ -8,7 +8,9 @@ require "../database/header.php";
 <head><link rel="stylesheet" href="menu.css"></head>
 
 <body>
-<h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
+    <div id="welcome">
+    <h1>Welcome, <b><?php echo $_SESSION['username']; ?></b></h1>
+    </div>
     <section id="menu">
         <div id="navigate">
             <a href="../game/game_options.php">Play Connect 4</a>
