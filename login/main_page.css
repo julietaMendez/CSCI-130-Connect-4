@@ -1,3 +1,17 @@
+html {
+  font: normal 14px Tahoma, Verdana, Arial, sans-serif;
+}
+
+body{
+  background-color: #13284c;
+  color:white;
+}
+
+header{
+  color: #b1102b;
+  font-size: 30px;
+}
+
 .col {
     float: left;
     padding:20px;
@@ -5,7 +19,7 @@
 }
 
 .col:hover{
-    background-color: #cccccc;
+    background-color: #2f528f;
     transition: background-color 2s ease;
 }
 
