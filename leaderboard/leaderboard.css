@@ -3,6 +3,10 @@ html{
     font: normal 12px Tahoma, Verdana, Arial, sans-serif;
 }
 
+h1{
+    color:black;
+}
+
 #leaders_tbl{
     width:100%;
     text-align: center;
