@@ -138,9 +138,7 @@ function total_3_in_a_row(curr_row, curr_col){
   let three_in_a_rows = 0;
   let traverses = 0;
 
-
-
-  // Down
+  // Down ----------------------------------------------------------------------
   traverses=0;
   for(let i=curr_row; i < row_max && traverses < 3; i++){
     // console.log("i, row_max, traverses: ", i, row_max, traverses);
@@ -154,21 +152,73 @@ function total_3_in_a_row(curr_row, curr_col){
     traverses++;
   }
 
-    // Across
-    traverses=0;
-    accum3=0;
-    for(let j=curr_col; j < col_max && traverses < 3; j++){
-      let str = curr_row+"_"+(j); // creates neighboring chips id
-      console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
+  // Across: Check 2 to the LEFT -----------------------------------------------
+  traverses=0;
+  accum3=0;
+  for(let j=curr_col; j > 0 && traverses < 3; j--){
+    let str = curr_row+"_"+(j); // creates neighboring chips id
+    console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
 
-      accum3 = count_in_a_row(str, accum3); 
-      console.log("accum3: ", accum3)
-      if(accum3 == 3){ // found 3-in-a-row
-        update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
-      }
-      traverses++;
+    accum3 = count_in_a_row(str, accum3); 
+    console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
+    traverses++;
+  }
 
+  // Across: Check 2 to the RIGHT -----------------------------------------------
+  traverses=0;
+  accum3=0;
+  for(let j=curr_col; j < col_max && traverses < 3; j++){
+    let str = curr_row+"_"+(j); // creates neighboring chips id
+    console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
+
+    accum3 = count_in_a_row(str, accum3); 
+    console.log("accum3: ", accum3)
+    if(accum3 == 3){ // found 3-in-a-row
+      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+  }
+
+  // Across: Check 1 to the LEFT and Check 1 to the RIGHT -------------------------
+  if(curr_col>0){ // check 1 place to the LEFT
+    let str = curr_row+"_"+(curr_col-1); // creates LEFT neighbors chips id
+    let td = document.getElementById(str);
+    let chip = (td.firstChild);
+    if(chip.classList[1]==player_color){ // check if LEFT neighbor is the same color
+        if(curr_col < col_max-1){ // if so, check if RIGHT neighbor is the same color
+          let str = curr_row+"_"+(curr_col+1); // creates RIGHT neighbors chips id
+          let td = document.getElementById(str);
+          let chip = (td.firstChild);
+          if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+            update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+          }
+        }
+      }
+  
+  }
+
+    // 1. Top/Left Diagonal To Bottom/Right Diagonal -----------------------------
+    // for(let i = curr_row; i<row_max && curr_col < col_max; i++){
+    //   let str = (i)+"_"+(left_top_col_start++); // creates neighboring chips id
+    //   accum = count_in_a_row(str, accum); 
+    //   if(accum == 4){ // found 4-in-a-row
+    //     return true;
+    //   }
+    // }
+
+}
+
+function update_3_in_a_row_stat(player_color){
+  if(player_color == `${player1_color}`){
+    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + (++p1_3_in_a_rows);
+  }
+  else{
+    document.getElementById("p2_3_in_a_row").innerHTML =  "3 In A Rows: " + (++p2_3_in_a_rows);
+  }
+  
 }
 
 function count_in_a_row(str_id, accum){
@@ -245,19 +295,6 @@ function is_win(curr_row, curr_col){
   }
 
   return false;
-}
-
-
-function update_3_in_a_row_stat(player_color){
-  if(player_color == `${player1_color}`){
-    p1_3_in_a_rows++;
-    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows;
-  }
-  else{
-    p2_3_in_a_rows++;
-    document.getElementById("p2_3_in_a_row").innerHTML =  "3 In A Rows: " + p2_3_in_a_rows;
-  }
-  
 }
 
 //updates curr player display
