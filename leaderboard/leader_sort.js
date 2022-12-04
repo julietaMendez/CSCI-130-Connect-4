@@ -52,20 +52,38 @@ function display_obj_handler() {
 // display an object
 function displayObj(arr){
     let tbl = document.getElementById("leaders_tbl");
-    tbl.innerHTML="";
+    tbl.innerHTML="<th><h3>Rank</h3></th><th><h3>UserName</h3></th><th><h3>Wins</h3></th><th><h3>Losses</h3></th><th><h3>Draws</h3></th><th><h3>Total Games</h3></th><th><h3>Total Time</h3></th>";
     for(let i=0; i<arr.length; i++){
         let tr = document.createElement("TR");
         tbl.appendChild(tr);
-        let td = document.createElement("TD");
-        tr.appendChild(td);
-        td.innerHTML=
-        arr[i].username + " " +
-        "Wins: " + arr[i].win + " " +
-        "Losses: " + arr[i].lose + " " +
-        "Draws: " + arr[i].draw + " " +
-        "Total Games: " + arr[i].total_games + " " +
-        "Total Time: " + arr[i].total_time;
-   
+
+        let td0 = document.createElement("TD");
+        tr.appendChild(td0);
+        td0.innerHTML=i+1;
+
+        let td1 = document.createElement("TD");
+        tr.appendChild(td1);
+        td1.innerHTML=arr[i].username;
+
+        let td2 = document.createElement("TD");
+        tr.appendChild(td2);
+        td2.innerHTML=arr[i].win;
+
+        let td3 = document.createElement("TD");
+        tr.appendChild(td3);
+        td3.innerHTML=arr[i].lose;
+
+        let td4 = document.createElement("TD");
+        tr.appendChild(td4);
+        td4.innerHTML=arr[i].draw;
+
+        let td5 = document.createElement("TD");
+        tr.appendChild(td5);
+        td5.innerHTML=arr[i].total_games;
+
+        let td6 = document.createElement("TD");
+        tr.appendChild(td6);
+        td6.innerHTML=arr[i].total_time;
     }
 }
   

@@ -4,7 +4,10 @@ include "../menu/navbar.php";
 ?>
 <!DOCTYPE html>
 <html>
-    <head><link rel="stylesheet" href="../menu/menu.css"></head>
+    <head>
+        <link rel="stylesheet" href="../menu/menu.css">
+        <link rel="stylesheet" href="leaderboard.css">
+    </head>
     <body>
     <!-- <div class="topnav">
         <a href="../connect4.php">Play</a>
@@ -12,8 +15,8 @@ include "../menu/navbar.php";
         <a href="../leaderboard/leaderboard_page.php">Leaderboard</a>
         <a href="contact_us.html">Contact Us</a>
     </div>  -->
-        <form>
-            <fieldset>
+        <form >
+            <fieldset class="center">
             <legend><h1>Leaderboard</h1></legend>
                 Sort By:
                 <input type=button onclick=sort(this.value) value="Most Wins">
@@ -24,7 +27,11 @@ include "../menu/navbar.php";
                 <input type=button onclick=sort(this.value) value="Least Time">
             </fieldset>
         </form>
-        <table id=leaders_tbl></table>
+        <table id=leaders_tbl>
+        <tr>
+       
+        </tr>
+        </table>
         <script src="leader_sort.js"></script>
     </body>
 </html>

@@ -1,0 +1,35 @@
+html{
+    color:white;
+    font: normal 12px Tahoma, Verdana, Arial, sans-serif;
+}
+
+#leaders_tbl{
+    width:100%;
+    text-align: center;
+    font-size: large;
+}
+
+#leaders_tbl td{
+    min-width: 100px;
+    text-align: center;
+    justify-content: center;
+}
+
+.center{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+input[type="button"]{
+    background-color: #b1102b;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    width:150px;
+    height:50px;
+}
+
+input[type="button"]:hover{
+    background-color: #720a1b;
+}
