@@ -108,28 +108,81 @@ function place_chip(id) {
       let str = "<div class='chip "+player_color+"'></div>";
     
       chip.innerHTML = str; //put built string into chip
-        //spot where chip is placed
+      
+
+     // check for winning condition
       if(is_win(space_avail, curr_col)){
         // dynamically create winner popup w/curr player's name
         let popup = document.getElementById("win_popup");
         popup.innerHTML = "<h1>"+curr_player.innerText+" Wins!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
         popup.classList.remove('hidden');
         popup.classList.add('show_popup');
+
+        //if the user is the winner, update the database
+        if(document.getElementById("p1_name").innerText == curr_player.innerText){
+          str = 'gameover=win'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
+          send_post(str,"../database/update_player.php", response_handler);
+        }
       };
+
+
       total_3_in_a_row(space_avail, curr_col);
       update_curr_player();
       update_empties();
     }
+
     // game draw condition. not a win
     if(empties == 0){
       let popup = document.getElementById("draw_popup");
       popup.innerHTML = "<h1>DRAW!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
       popup.classList.remove('hidden');
       popup.classList.add('show_popup');
+
+      str = 'gameover=draw'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
+      send_post(str,"../database/update_player.php", response_handler);
     }
+      //if the user is the winner, update the database
+      if(document.getElementById("p2_name").innerText == curr_player.innerText){
+        str = 'gameover=win'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
+        send_post(str,"../database/update_player.php", response_handler);
+      }
    
     //lose condition
 }
+
+
+// Database Post Request and Callback Handler ------------------------------------------
+function send_post(send_str, path, callback) {
+  httpRequest = new XMLHttpRequest();
+  if (!httpRequest) {
+    alert("Cannot create an XMLHTTP instance");
+    return false;
+  }
+  httpRequest.onreadystatechange = callback;
+  httpRequest.open("POST", path);
+  httpRequest.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+  );
+  httpRequest.send(send_str);
+}
+
+function response_handler() {
+  console.log('in res');
+  try {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        db_obj = JSON.parse(httpRequest.responseText);
+        console.log(db_obj);
+      } else {
+        alert("There was a problem with the request.");
+      }
+    }
+  } catch (e) {
+    console.log("Caught Exception: " + e.synopsis);
+  }
+}
+
 
 function total_3_in_a_row(curr_row, curr_col){
   let accum3 = 0;
@@ -396,6 +449,8 @@ function update_empties(){ // decrement the number of remaining turns/spaces lef
 function redirect_game_options(){
   window.location.replace("/CSCI-130-CONNECT-4/game/game_options.php");
 }
+
+
 
 create_tbl();
 pretty_stats();

@@ -63,7 +63,6 @@ include "../menu/navbar.php";
 
             <table id="connect_4_table"></table>
 
-            <div id="display"></div>
         
         
         <script src="connect4.js"></script>
