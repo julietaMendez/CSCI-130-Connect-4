@@ -43,9 +43,7 @@ function create_tbl() {
   update_curr_player();
 }
 
-//get the cell id and then find entire col
 function shade_col(id) {
-  // onmouseover: on hover
   let col = id.slice(2);
   let shade_space = find_space(col, colArr[col]);
   if(shade_space != -1){
@@ -135,7 +133,6 @@ function place_chip(id) {
 
 function total_3_in_a_row(curr_row, curr_col){
   let accum3 = 0;
-  let three_in_a_rows = 0;
   let traverses = 0;
 
   // Down ----------------------------------------------------------------------
@@ -143,7 +140,6 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = i+"_"+curr_col; // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){
-      three_in_a_rows++;
       update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
@@ -256,8 +252,6 @@ function total_3_in_a_row(curr_row, curr_col){
   for(let i = curr_row; i < row_max && col >= 0 && traverses < 3; i++){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
-    console.log("str, accum3", str, accum3);
-
     if(accum3 == 3){ // found 3-in-a-row
       update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
@@ -290,8 +284,7 @@ function update_3_in_a_row_stat(player_color){
   }
   else{
     document.getElementById("p2_3_in_a_row").innerHTML =  "3 In A Rows: " + (++p2_3_in_a_rows);
-  }
-  
+  } 
 }
 
 function count_in_a_row(str_id, accum){
@@ -370,8 +363,7 @@ function is_win(curr_row, curr_col){
   return false;
 }
 
-//updates curr player display
-function update_curr_player() {
+function update_curr_player() { //updates curr player display
   p1_name = document.getElementById("p1_name").innerText;
   p2_name = document.getElementById("p2_name").innerText;
   if (player_id == 1) {
@@ -387,7 +379,7 @@ function update_curr_player() {
   player_id == 1 ? (player_id = 0) : (player_id = 1);
 }
 
-function pretty_stats(){
+function pretty_stats(){ // hilight players name with their chip color
   player1 = document.getElementById("p1_name").classList;
   player1.add(player1_color);
 
@@ -395,8 +387,7 @@ function pretty_stats(){
   player2.add(player2_color);
 }
 
-// decrement the number of remaining turns/spaces left on the board
-function update_empties(){
+function update_empties(){ // decrement the number of remaining turns/spaces left on the board
   let display = document.getElementById("empties"); 
   empties = parseInt(display.innerText)-1;  
   display.innerText = empties;  
