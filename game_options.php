@@ -25,24 +25,24 @@ require "header.php";
         <form class="options" width="100%" action="create_game.php" method="POST">
             <fieldset>
                 <input type=button class="red" id="p1_red" value="red" onclick="set_chip_color_p1(this.value)">
-                <input type=button class="blue" id="p1_blue" value="blue" onclick="set_chip_color_p1(this.value)">
+                <input type=button class="skyblue" id="p1_skyblue" value="skyblue" onclick="set_chip_color_p1(this.value)">
                 <input type=button class="yellow" id="p1_yellow" value="yellow" onclick="set_chip_color_p1(this.value)">
-                <input type=button class="purple" id="p1_purple" value="purple" onclick="set_chip_color_p1(this.value)">
+                <input type=button class="dullpink" id="p1_dullpink" value="dullpink" onclick="set_chip_color_p1(this.value)">
                 <h2>Player 1 Color: </h2>
                 <input type="text" id="p1_color" name="p1_color" value="red" >
             </fieldset>
             <fieldset>
                 <input type=button class="red" id="p2_red" value="red" onclick="set_chip_color_p2(this.value)">
-                <input type=button class="blue" id="p2_blue" value="blue" onclick="set_chip_color_p2(this.value)">
+                <input type=button class="skyblue" id="p2_skyblue" value="skyblue" onclick="set_chip_color_p2(this.value)">
                 <input type=button class="yellow" id="p2_yellow" value="yellow" onclick="set_chip_color_p2(this.value)">
-                <input type=button class="purple" id="p2_purple" value="purple" onclick="set_chip_color_p2(this.value)">
+                <input type=button class="dullpink" id="p2_dullpink" value="dullpink" onclick="set_chip_color_p2(this.value)">
                 <h2>Player 2 Color: </h2>
                 <input type="text" id="p2_color" name="p2_color" value="yellow" >
             </fieldset>
             <fieldset>
-                <input type=button class="red" id="board_red" value="red" onclick="set_board_color(this.value)">
                 <input type=button class="blue" id="board_blue" value="blue" onclick="set_board_color(this.value)">
-                <input type=button class="yellow" id="board_yellow" value="yellow" onclick="set_board_color(this.value)">
+                <input type=button class="green" id="board_green" value="green" onclick="set_board_color(this.value)">
+                <input type=button class="pink" id="board_pink" value="pink" onclick="set_board_color(this.value)">
                 <input type=button class="purple" id="board_purple" value="purple" onclick="set_board_color(this.value)">
                 <h2>Choose a board color: </h2>
                 <input type="text" id="board_color" name="board_color" value="blue" >

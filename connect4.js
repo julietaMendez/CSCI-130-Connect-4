@@ -6,7 +6,8 @@ var tbl = document.getElementById("connect_4_table");
 var colArr = createColArr(col_max); // the number of chips inside a column
 var empties; // amount of empty spaces left on the board
 var player_id = 1;
-var three_in_a_row = 0;
+var p1_3_in_a_rows = 0;
+var p2_3_in_a_rows = 0;
 
 function createColArr(col_max) {
   var arr = new Array(); //keep track of spots taken within col at index i
@@ -117,6 +118,7 @@ function place_chip(id) {
         popup.classList.remove('hidden');
         popup.classList.add('show_popup');
       };
+      total_3_in_a_row(space_avail, curr_col);
       update_curr_player();
       update_empties();
     }
@@ -131,6 +133,43 @@ function place_chip(id) {
     //lose condition
 }
 
+function total_3_in_a_row(curr_row, curr_col){
+  let accum3 = 0;
+  let three_in_a_rows = 0;
+  let traverses = 0;
+
+
+
+  // Down
+  traverses=0;
+  for(let i=curr_row; i < row_max && traverses < 3; i++){
+    // console.log("i, row_max, traverses: ", i, row_max, traverses);
+    let str = i+"_"+curr_col; // creates neighboring chips id
+    accum3 = count_in_a_row(str, accum3);
+    // console.log("accum3: ", accum3)
+    if(accum3 == 3){
+      three_in_a_rows++;
+      update_3_in_a_row_stat(player_color, three_in_a_rows); // assign the correct player the total of 3-in-a-rows
+    }
+    traverses++;
+  }
+
+    // Across
+    traverses=0;
+    accum3=0;
+    for(let j=curr_col; j < col_max && traverses < 3; j++){
+      let str = curr_row+"_"+(j); // creates neighboring chips id
+      console.log("j, col_max, traverses, str: ", j, col_max, traverses, str);
+
+      accum3 = count_in_a_row(str, accum3); 
+      console.log("accum3: ", accum3)
+      if(accum3 == 3){ // found 3-in-a-row
+        update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      }
+      traverses++;
+    }
+
+}
 
 function count_in_a_row(str_id, accum){
   let td = document.getElementById(str_id);
@@ -160,9 +199,6 @@ function is_win(curr_row, curr_col){
   for(let i = left_top_row_start; i<row_max && left_top_col_start < col_max; i++){
     let str = (i)+"_"+(left_top_col_start++); // creates neighboring chips id
     accum = count_in_a_row(str, accum); 
-    if(accum == 3){
-      three_in_a_row++;
-    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -183,9 +219,6 @@ function is_win(curr_row, curr_col){
   for(let j = left_btm_col_start; j<col_max && left_btm_row_start>0; j++){
     let str = (left_btm_row_start--)+"_"+(j); // creates neighboring chips id
     accum = count_in_a_row(str, accum); 
-    if(accum == 3){
-      three_in_a_row++;
-    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -196,9 +229,6 @@ function is_win(curr_row, curr_col){
   for(let j=0; j<col_max; j++){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum = count_in_a_row(str, accum); 
-    if(accum == 3){
-      three_in_a_row++;
-    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
@@ -209,15 +239,25 @@ function is_win(curr_row, curr_col){
   for(let i=curr_row; i<row_max-1; i++){
     let str = (++curr_row)+"_"+(curr_col); // creates neighboring chips id
     accum = count_in_a_row(str, accum); 
-    if(accum == 3){
-      three_in_a_row++;
-    }
     if(accum == 4){ // found 4-in-a-row
       return true;
     }
   }
 
   return false;
+}
+
+
+function update_3_in_a_row_stat(player_color){
+  if(player_color == `${player1_color}`){
+    p1_3_in_a_rows++;
+    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows;
+  }
+  else{
+    p2_3_in_a_rows++;
+    document.getElementById("p2_3_in_a_row").innerHTML =  "3 In A Rows: " + p2_3_in_a_rows;
+  }
+  
 }
 
 //updates curr player display
@@ -237,6 +277,14 @@ function update_curr_player() {
   player_id == 1 ? (player_id = 0) : (player_id = 1);
 }
 
+function pretty_stats(){
+  player1 = document.getElementById("p1_name").classList;
+  player1.add(player1_color);
+
+  player2 = document.getElementById("p2_name").classList;
+  player2.add(player2_color);
+}
+
 // decrement the number of remaining turns/spaces left on the board
 function update_empties(){
   let display = document.getElementById("empties"); 
@@ -249,3 +297,4 @@ function redirect_game_options(){
 }
 
 create_tbl();
+pretty_stats();

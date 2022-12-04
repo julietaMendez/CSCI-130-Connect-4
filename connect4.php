@@ -38,14 +38,18 @@ require "header.php";
                 <div id="draw_popup" class="hidden"> </div>
                 <div id="win_popup" class="hidden"> </div>
 
+                <!-- player 1 Info -->
                 <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
                 <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>
                 <p>Wins: <?php echo json_decode($_SESSION["player1"])->win; ?></p>
                 <p>Losses: <?php echo json_decode($_SESSION["player1"])->lose; ?></p>
                 <p>Draws: <?php echo json_decode($_SESSION["player1"])->draw; ?></p>
+                <p id="p1_3_in_a_row">3 In A Rows: 0</p>
                
+                <!-- Player 2 Info -->
                 <h2 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h2>
                 <p id="p2_color"><?php echo json_decode($_SESSION["player2"])->chip_color; ?> </p>
+                <p id="p2_3_in_a_row">3 In A Rows: 0</p>
 
                 <h2>Current player: </h2>
                 <p id="curr_player"><?php echo $_SESSION['username'];?></p>
