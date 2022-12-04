@@ -2,10 +2,12 @@
 include "../database/db_connect.php";
 include "../database/db_credentials.ini";
 
-if (isset($_POST["gameover"])){ 
+if (isset($_POST["gameover"])){
+    // username and the elapsed time of the game
     if (isset($_POST["username"])){ $username = $_POST["username"]; echo 'username '. $username;}
     if (isset($_POST["total_time"])){ $game_time = $_POST["total_time"];echo 'game_time '. $game_time;}
 
+    // db lookup the user from the database by username variable and get their stats
     $sql = "SELECT * FROM player_tbl WHERE username = '$username'";
     $result = $conn->query($sql);
 
@@ -29,19 +31,16 @@ if (isset($_POST["gameover"])){
         die("Connection failed: " . $conn->connect_error ."<br>");
     } 
 
-
+    // Game end cases: The user wins, loses, or draws
     if($_POST["gameover"]=="win"){
         $sql = "UPDATE player_tbl SET win ='$win'+1, total_games='$total_games'+1, total_time='$total_time'+'$game_time' WHERE username = '$username'";
     }
-    
     if($_POST["gameover"]=="lose"){
         $sql = "UPDATE player_tbl SET lose ='$lose'+1, total_games='$total_games'+1, total_time='$total_time'+'$game_time' WHERE username = '$username'";
     }
-    
     if($_POST["gameover"]=="draw"){
         $sql = "UPDATE player_tbl SET draw ='$draw'+1, total_games='$total_games'+1, total_time='$total_time'+'$game_time' WHERE username = '$username'";
     }
-    
     
     $result = $conn->query($sql);
     if ($conn->query($sql) === TRUE) {

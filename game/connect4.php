@@ -8,7 +8,7 @@ include "../menu/navbar.php";
     <head>
         <link rel="stylesheet" href="chip.css">
     </head>
-    <body>
+    <body onload=startTimer();>
         <div class="select_options">
             <form>
                 <fieldset>
@@ -41,7 +41,7 @@ include "../menu/navbar.php";
                 <div id="win_popup" class="hidden"> </div>
 
                 <!-- player 1 Info -->
-                <h2 id="p1_name"><?php echo $_SESSION['username'];?></h2>
+                <h3 id="p1_name"><?php echo $_SESSION['username'];?></h3>
                 <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>
                 <p>Wins: <?php echo json_decode($_SESSION["player1"])->win; ?></p>
                 <p>Losses: <?php echo json_decode($_SESSION["player1"])->lose; ?></p>
@@ -49,22 +49,24 @@ include "../menu/navbar.php";
                 <p id="p1_3_in_a_row">3 In A Rows: 0</p>
                
                 <!-- Player 2 Info -->
-                <h2 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h2>
+                <h3 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h3>
                 <p id="p2_color"><?php echo json_decode($_SESSION["player2"])->chip_color; ?> </p>
                 <p id="p2_3_in_a_row">3 In A Rows: 0</p>
 
-                <h2>Current player: </h2>
+                <h3>Current player: </h3>
                 <p id="curr_player"><?php echo $_SESSION['username'];?></p>
 
-                <h2>Remaining Turns:</h2>
+                <h3>Remaining Turns:</h3>
                 <p id="empties"><?php echo json_decode($_SESSION["board"])->empty_spaces?></p>
-           
+
+                <h3>Time Elapsed:</p>
+                <div class="timerDisplay">
+                    00 : 00 : 00 : 000
+                </div>
             </div>
 
             <table id="connect_4_table"></table>
-
-        
-        
+            <!-- <div id="display"></div> -->
         <script src="connect4.js"></script>
     </body>
 </html>

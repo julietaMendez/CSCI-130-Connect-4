@@ -8,6 +8,7 @@ var empties; // amount of empty spaces left on the board
 var player_id = 1;
 var p1_3_in_a_rows = 0;
 var p2_3_in_a_rows = 0;
+var total_time_elapsed;
 
 function createColArr(col_max) {
   var arr = new Array(); //keep track of spots taken within col at index i
@@ -113,19 +114,23 @@ function place_chip(id) {
      // check for winning condition
       if(is_win(space_avail, curr_col)){
         // dynamically create winner popup w/curr player's name
+        total_time_elapsed = get_time_elapsed(); /////////////////////////////////
+
         let popup = document.getElementById("win_popup");
         popup.innerHTML = "<h1>"+curr_player.innerText+" Wins!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
         popup.classList.remove('hidden');
         popup.classList.add('show_popup');
 
-        //if the user is the winner, update the database
-        if(document.getElementById("p1_name").innerText == curr_player.innerText){
-          str = 'gameover=win'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
+        // Player1 Win Condition
+        let username = document.getElementById("p1_name").innerText;
+        if(username == curr_player.innerText){
+          str = 'gameover=win'+'&'+'username='+username+'&'+'total_time='+total_time_elapsed;
+          send_post(str,"../database/update_player.php", response_handler);
+        }else{ // Player1 Lose Condition
+          str = 'gameover=lose'+'&'+'username='+username+'&'+'total_time='+total_time_elapsed;
           send_post(str,"../database/update_player.php", response_handler);
         }
       };
-
-
       total_3_in_a_row(space_avail, curr_col);
       update_curr_player();
       update_empties();
@@ -133,21 +138,17 @@ function place_chip(id) {
 
     // game draw condition. not a win
     if(empties == 0){
+      total_time_elapsed= get_time_elapsed(); /////////////////////////////////
+
       let popup = document.getElementById("draw_popup");
       popup.innerHTML = "<h1>DRAW!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
       popup.classList.remove('hidden');
       popup.classList.add('show_popup');
-
-      str = 'gameover=draw'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
+      let username = document.getElementById("p1_name").innerText;
+      str = 'gameover=draw'+'&'+'username='+username+'&'+'total_time='+total_time_elapsed;
       send_post(str,"../database/update_player.php", response_handler);
     }
-      //if the user is the winner, update the database
-      if(document.getElementById("p2_name").innerText == curr_player.innerText){
-        str = 'gameover=win'+'&'+'username='+curr_player.innerText+'&'+'total_time='+empties;
-        send_post(str,"../database/update_player.php", response_handler);
-      }
-   
-    //lose condition
+
 }
 
 
@@ -450,7 +451,62 @@ function redirect_game_options(){
   window.location.replace("/CSCI-130-CONNECT-4/game/game_options.php");
 }
 
+// Time Elapsed Functions -------------------------------------------------------------
+let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+let timerRef = document.querySelector('.timerDisplay');
+let int = null;
 
+function startTimer(){
+  int = setInterval(displayTimer,10);
+}
 
-create_tbl();
-pretty_stats();
+function get_time_elapsed(){ // returns time elapsed in seconds
+  clearInterval(int);
+  let time_elapsed1 = timerRef.innerHTML; // returns time in hr : min : sec : ms
+  sec_elapsed = time_elapsed1.slice(11,13); // get sec only, NOTE: slice includes starting index and excludes ending index
+  min_elapsed = time_elapsed1.slice(6,8); // get min only
+  hr_elapsed = time_elapsed1.slice(1,3); // get min only
+
+  let sec = parseInt(sec_elapsed); // convert to int
+  let min = parseInt(min_elapsed); // convert to int
+  let hr = parseInt(hr_elapsed); // convert to int
+
+  let min_in_sec = min * 60; // convert min to sec
+  let hr_in_sec = hr * 60 * 60; // convert hr to sec
+
+  let total_sec = sec + min_in_sec + hr_in_sec; // sum of hrs, mins, and secs in seconds
+  return total_sec;
+}
+
+function displayTimer(){
+  milliseconds+=10;
+  if(milliseconds == 1000){
+      milliseconds = 0;
+      seconds++;
+      if(seconds == 60){
+          seconds = 0;
+          minutes++;
+          if(minutes == 60){
+              minutes = 0;
+              hours++;
+          }
+      }
+  }
+  let h = hours < 10 ? "0" + hours : hours;
+  let m = minutes < 10 ? "0" + minutes : minutes;
+  let s = seconds < 10 ? "0" + seconds : seconds;
+  let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+  timerRef.innerHTML = ` ${h} : ${m} : ${s} : ${ms}`;
+} 
+
+function show_time_elapsing(){
+  let start = Date.now();
+  create_tbl();
+  pretty_stats();
+  let end = Date.now();
+  let elapsed = end - start; // in milliseconds
+  elpased = elapsed/1000; // convert to seconds
+  return elapsed;
+}
+
+show_time_elapsing();
