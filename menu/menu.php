@@ -5,9 +5,7 @@ require "../header.php";
 
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="menu.css">
-</head>
+<head><link rel="stylesheet" href="menu.css"></head>
 
 <body>
     <section id="menu">
@@ -18,7 +16,7 @@ require "../header.php";
             <a href="help.html">Instructions</a>
         </div>
         <div id="navigate">
-            <a href="leaderboard.php">Leaderboard</a>
+            <a href="../leaderboard/leaderboard_page.php">Leaderboard</a>
         </div>
         <div id="navigate">
             <a href="contact_us.html">Contact Us</a>
