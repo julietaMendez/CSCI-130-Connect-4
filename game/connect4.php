@@ -60,29 +60,11 @@ include "../menu/navbar.php";
                 <p id="empties"><?php echo json_decode($_SESSION["board"])->empty_spaces?></p>
 
                 <h3>Time Elapsed:</p>
-                <span id='ct' ></span>
-                <button onclick="get_time_elapsed()">Time</button>
-                <br><br>
-                <!-- <div class="timerDisplay">
+                <div class="timerDisplay">
                     00 : 00 : 00 : 000
-                </div> -->
-
-                <div class="container">
-                    <div class="timerDisplay">
-                        00 : 00 : 00 : 000
-                    </div>
-                    <div class="buttons">
-                        <button onclick="pauseTimer()">Pause</button>
-                        <button id="startTimer">Start</button>
-                        <button id="resetTimer">Reset</button>
-                    </div>
                 </div>
-
             </div>
 
-            
-
-            
             <table id="connect_4_table"></table>
             <div id="display"></div>
         <script src="connect4.js"></script>
