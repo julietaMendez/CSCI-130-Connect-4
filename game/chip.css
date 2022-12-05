@@ -8,12 +8,31 @@ html {
   background-color: lightgray;
 }
 
-.chip {
+.chip { /* the chips on the board */
   width: 50px;
   height: 50px;
   border-radius: 50px;
   margin: auto;
   box-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+.chip-btn{ /* the buttons to choose your chip color look like chips */
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+.start-btn{
+  /* background-color:#13284c; */
+  background-color: green;
+  color:white;
+  font-size: large;
+  margin: 10px;
+  padding:10px;
+  width:80%;
+  border-radius: 20px;
 }
 
 #connect_4_table td{
