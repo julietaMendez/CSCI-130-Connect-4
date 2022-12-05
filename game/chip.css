@@ -1,6 +1,4 @@
-html {
-  font: normal 14px Tahoma, Verdana, Arial, sans-serif;
-}
+html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
 
 .options fieldset{
   width:auto;
@@ -40,10 +38,9 @@ html {
   border: 1px transparent;
 }
 
-#connect_4_table {
-  margin: auto;
-}
+#connect_4_table { margin: auto; }
 
+/* Pop Up */
 .show_popup{
   display: flex;
   flex-direction: column;
@@ -66,9 +63,7 @@ html {
   transition: .5s ease-in-out;
 }
 
-.hidden{
-  display: none;
-}
+.hidden{ display: none; }
 
 .darken{
   filter: brightness(75%);
@@ -80,37 +75,19 @@ html {
   border: 1px solid white;
 }
 
-#player_color_table {
-  width: 100%;
-}
+#player_color_table { width: 100%; }
 
 /* Chip Colors */
-.red{
-  background-color: red;
-}
-.skyblue{
-  background-color: skyblue;
-}
-.yellow {
-  background-color: rgb(255, 216, 23);
-}
-.dullpink {
-  background-color: rgb(192, 95, 95);
-}
+.red{ background-color: red; }
+.skyblue{ background-color: skyblue; }
+.yellow { background-color: rgb(255, 216, 23); }
+.dullpink { background-color: rgb(192, 95, 95); }
 
 /* Board Colors */
-.blue {
-  background-color: rgb(88, 88, 255);
-}
-.green {
-  background-color: lightgreen;
-}
-.pink{
-  background-color: pink;
-}
-.purple {
-  background-color: rgb(170, 108, 228);
-}
+.blue { background-color: rgb(88, 88, 255); }
+.green { background-color: lightgreen; }
+.pink{ background-color: pink; }
+.purple { background-color: rgb(170, 108, 228); }
 
 .empty_space {
   width: 50px;
@@ -123,7 +100,7 @@ html {
 
 .display {
   width: 30%;
-  height: 1000px;
+  height: 600px;
   float: right;
   background-color: lightgray;
   padding: 20px;
