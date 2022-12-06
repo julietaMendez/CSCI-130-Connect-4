@@ -61,7 +61,7 @@ input[type="button"]:hover, [type="submit"]:hover{
   margin: 10px;
   padding:10px;
   border-radius: 30px;
-  min-width: 100px;
+  min-width: 60px;
 }
 
 #connect_4_table td{
