@@ -19,29 +19,23 @@
         <input type="button" class="chip-btn dullpink">
     </header>
     <div class="row">
-        <div class="col">
+    <div class="col">
             <h2>Sign Up</h2>
             <p>Please fill this form to create an account.</p>
             <form action="register_mysql.php" method="post">
-                <div>
+        
                     <label><sup>*</sup>Username:</label>
                     <input type="text" name="username" />
-                    <span></span>
-                </div>
-                <div>
+               
                     <label><sup>*</sup>Password:</label>
                     <input type="password" name="password" />
-                    <span></span>
-                </div>
-                <div>
+                
                     <label><sup>*</sup>Confirm Password:</label>
                     <input type="password" name="confirm_password"  />
-                    <span></span>
-                </div>
-                <div>
+                 
                     <input type="submit" class="btn" value="submit" />
                     <input type="reset" class="btn" value="Reset" />
-                </div>
+           
             </form>
 <!-- display all registration errors -->
             <?php
@@ -51,25 +45,25 @@
                 echo $error.'<br>';}
             }
             ?>
+
         </div>
+        
 <!-- Login Section -->
-        <div class="col">
+<div class="col">
             <h2>Login</h2>
             <p>Please fill in your credentials to login.</p>
             <form action="login_mysql.php" method="post">
-                <div>
+              
                     <label><sup>*</sup>Username:</label>
                     <input type="text" name="username" value="" />
-                    <span></span>
-                </div>
-                <div>
+              
+             
                     <label><sup>*</sup>Password:</label>
                     <input type="password" name="password" />
-                    <span></span>
-                </div>
-                <div>
+                 
+               
                     <input type="submit" class="btn" value="submit" />
-                </div>
+            
             </form>
 <!-- display all login errors -->
             <?php

@@ -1,4 +1,12 @@
-html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
+html { 
+  font: normal 14px Tahoma, Verdana, Arial, sans-serif;
+  height:100%;
+}
+
+body{
+  height:100%;
+  margin:0;
+}
 
 .options{
   display:flex;
@@ -15,7 +23,11 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
   width:30%;
   float:left;
   min-height: 250px;
-  background-color: rgb(241, 241, 241);
+  background-color: #ced1d4;
+}
+
+#game_header>fieldset{
+  background-color: #ced1d4;
 }
 
 .chip { /* the chips on the board */
@@ -34,11 +46,11 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
   margin: auto;
 }
 
-input[type="button"], [type="submit"], [type="reset"]{
+input[type="button"], [type="submit"], [type="reset"], fieldset>a{
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
-input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover{
+input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover,  fieldset>a:hover{
   transform: translate(2px, 2px);
   box-shadow: 1px 1px rgb(0, 0, 0);
   filter: brightness(75%);
@@ -71,15 +83,16 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover{
   display: flex;
   flex-direction: column;
   position: absolute;
-  opacity: 80%;
+  opacity: 90%;
   top: 0;
+  bottom:0;
   left: 0;
   z-index: 999;
   width: 100%;
   height: 100%;
   background: rgb(255, 255, 255);
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   font-size: 2em;
 }
 
@@ -125,10 +138,10 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover{
 
 .display {
   width: 30%;
-  height: 600px;
+  height:100%;
   float: right;
   background-color: lightgray;
-  padding: 20px;
+  padding: 0 20px;
   margin: 0 20px;
 }
 
