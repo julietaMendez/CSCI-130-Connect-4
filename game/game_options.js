@@ -12,12 +12,6 @@ function set_chip_color_p1(input_color) {
     player1_color = input_color; // keep track
     p1_color_display = document.getElementById("p1_color"); // get the display
     p1_color_display.value = input_color; // set the display
-
-    // let p1 = document.getElementById("p1_color");
-    // player1_color = color;
-    // p1.value = player1_color;
-    // let curr_p = document.getElementById("curr_player");
-    // curr_p.innerHTML = player1_color;
   }
 }
 
@@ -30,11 +24,6 @@ function set_chip_color_p2(input_color) {
     p2_color_display.value = input_color; // set the display
   }
 
-  // if (player1_color != color) {
-  //   let p2 = document.getElementById("p2_color");
-  //   player2_color = color;
-  //   p2.innerHTML = player2_color;
-  // }
 }
 
 function set_board_color(input_color) {

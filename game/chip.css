@@ -1,41 +1,71 @@
 html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
 
+.options{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .options fieldset{
-  width:auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border:2px solid black;
+  border-radius: 5px;
+  width:30%;
   float:left;
-  background-color: lightgray;
+  min-height: 250px;
+  background-color: rgb(241, 241, 241);
 }
 
 .chip { /* the chips on the board */
   width: 50px;
   height: 50px;
   border-radius: 50px;
+  border: 1px solid black;
   margin: auto;
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
-.chip-btn{ /* the buttons to choose your chip color look like chips */
+.chip-btn { /* the buttons to choose your chip color look like chips */
   width: 70px;
   height: 70px;
   border-radius: 50px;
   margin: auto;
+}
+
+input[type="button"], [type="submit"]{
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
-.start-btn{
-  /* background-color:#13284c; */
-  background-color: green;
+input[type="button"]:hover, [type="submit"]:hover{
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px rgb(0, 0, 0);
+  transition: .25s ease-in-out;
+}
+
+.start{
+  background-color: rgb(0, 165, 0);
   color:white;
-  font-size: large;
+  font-size: 30px;
+  width:80%;
+  border-radius: 30px;
+}
+
+.start:hover{
+  background-color: rgb(0, 138, 0); 
+  transition: .25s ease-in-out;
+}
+
+.btn{
   margin: 10px;
   padding:10px;
-  width:80%;
-  border-radius: 20px;
+  border-radius: 30px;
+  min-width: 100px;
 }
 
 #connect_4_table td{
   padding:10px;
-  border: 1px transparent;
 }
 
 #connect_4_table { margin: auto; }
@@ -55,7 +85,6 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
   justify-content: center;
   align-items: center;
   font-size: 2em;
-
 }
 
 .show_popup:hover{
@@ -63,6 +92,7 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
   transition: .5s ease-in-out;
 }
 
+/* Used to hide popups until game ends */
 .hidden{ display: none; }
 
 .darken{
@@ -72,7 +102,6 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
 
 .hilight{
   filter: brightness(2) saturate(2);
-  border: 1px solid white;
 }
 
 #player_color_table { width: 100%; }
@@ -90,8 +119,8 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
 .purple { background-color: rgb(170, 108, 228); }
 
 .empty_space {
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   background: rgb(0, 0, 0, 0.25);
   border-radius: 50px;
   margin: auto;
