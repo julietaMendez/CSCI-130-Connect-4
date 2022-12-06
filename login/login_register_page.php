@@ -6,11 +6,18 @@
     <meta charset="UTF-8" />
     <title>Connect4</title>
     <link rel="stylesheet" href="main_page.css" />
-
+    <link rel="stylesheet" href="../game/chip.css" />
   </head>
   <body>
+
 <!-- Sign up section -->
-    <header><h1>Connect 4</h1></header>
+    <header>
+        <h1>Connect 4</h1>
+        <input type="button" class="chip-btn red">
+        <input type="button" class="chip-btn skyblue">
+        <input type="button" class="chip-btn yellow">
+        <input type="button" class="chip-btn dullpink">
+    </header>
     <div class="row">
         <div class="col">
             <h2>Sign Up</h2>
@@ -32,8 +39,8 @@
                     <span></span>
                 </div>
                 <div>
-                    <input type="submit" value="submit" />
-                    <input type="reset" value="Reset" />
+                    <input type="submit" class="btn" value="submit" />
+                    <input type="reset" class="btn" value="Reset" />
                 </div>
             </form>
 <!-- display all registration errors -->
@@ -61,7 +68,7 @@
                     <span></span>
                 </div>
                 <div>
-                    <input type="submit" value="submit" />
+                    <input type="submit" class="btn" value="submit" />
                 </div>
             </form>
 <!-- display all login errors -->

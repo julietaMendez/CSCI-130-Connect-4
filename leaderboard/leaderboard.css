@@ -3,10 +3,6 @@ html{
     font: normal 14px Tahoma, Verdana, Arial, sans-serif;
 }
 
-h1{
-    color:black;
-}
-
 #leaders_tbl{
     width:100%;
     text-align: center;
@@ -28,11 +24,18 @@ h1{
 input[type="button"]{
     background-color: #b1102b;
     color:white;
-    border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     width:150px;
     height:50px;
+    box-shadow: 3px 3px rgb(0, 0, 0);
 }
+
+input[type="button"]:hover{
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px rgb(0, 0, 0);
+    transition: .25s ease-in-out;
+}
+  
 
 input[type="button"]:hover{
     background-color: #720a1b;

@@ -34,13 +34,14 @@ html { font: normal 14px Tahoma, Verdana, Arial, sans-serif; }
   margin: auto;
 }
 
-input[type="button"], [type="submit"]{
+input[type="button"], [type="submit"], [type="reset"]{
   box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
-input[type="button"]:hover, [type="submit"]:hover{
+input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover{
   transform: translate(2px, 2px);
   box-shadow: 1px 1px rgb(0, 0, 0);
+  filter: brightness(75%);
   transition: .25s ease-in-out;
 }
 
@@ -50,11 +51,6 @@ input[type="button"]:hover, [type="submit"]:hover{
   font-size: 30px;
   width:80%;
   border-radius: 30px;
-}
-
-.start:hover{
-  background-color: rgb(0, 138, 0); 
-  transition: .25s ease-in-out;
 }
 
 .btn{
