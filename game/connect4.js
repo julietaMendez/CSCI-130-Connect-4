@@ -117,7 +117,7 @@ function place_chip(id) {
         total_time_elapsed = get_time_elapsed(); /////////////////////////////////
 
         let popup = document.getElementById("win_popup");
-        popup.innerHTML = "<h1>"+curr_player.innerText+" Wins!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
+        popup.innerHTML = "<div class='popup "+player_color+"'>"+curr_player.innerText+" Wins!</div> <button class='btn press' onclick=redirect_game_options()>Return to Game Options</button>"
         popup.classList.remove('hidden');
         popup.classList.add('show_popup');
 
@@ -141,7 +141,7 @@ function place_chip(id) {
       total_time_elapsed= get_time_elapsed(); /////////////////////////////////
 
       let popup = document.getElementById("draw_popup");
-      popup.innerHTML = "<h1>DRAW!</h1> <button onclick=redirect_game_options()>Return to Game Options</button>"
+      popup.innerHTML = "<h1>DRAW!</h1> <button class='btn press' onclick=redirect_game_options()>Return to Game Options</button>"
       popup.classList.remove('hidden');
       popup.classList.add('show_popup');
       let username = document.getElementById("p1_name").innerText;

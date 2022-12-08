@@ -9,36 +9,32 @@ include "../menu/navbar.php";
         <link rel="stylesheet" href="chip.css">
     </head>
     <body onload=startTimer();>
-          <!-- popup screens  -->
+          <!------- popup screens  ------>
         <div id="draw_popup" class="hidden"> </div>
         <div id="win_popup" class="hidden"> </div>
-
-        <div class="select_options">
-            <form id="game_header">
-                <fieldset>
-                <!-- <h1>Welcome, <b> <?php echo $_SESSION['username']; ?></b></h1> -->
-                    <a class="btn skyblue" href="/CSCI-130-CONNECT-4/game/game_options.php">Return To Game Options</a>      
-                    <a class="btn skyblue" href="/CSCI-130-CONNECT-4/game/connect4.php">Restart</a>   
-
-                    <div id = "board_size">
-                        <?php $decode = json_decode($_SESSION["board"]); 
-                        $board_width = $decode->board_width;
-                        $board_height = $decode->board_height;
-                        echo $board_width."x".$board_height;
-                        ?>
-                    </div>
-                    <div id = "board_color">
-                        <?php $decode = json_decode($_SESSION["board"]); 
-                        $board_color = $decode->board_color;
-                        echo $board_color;
-                        ?>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
     
-        <div class="display">
+        <div id="game_hdr">
+                <a class="btn press red" href="/CSCI-130-CONNECT-4/game/game_options.php">Return To Game Options</a>      
+                <a class="btn press red" href="/CSCI-130-CONNECT-4/game/connect4.php">Restart</a>   
 
+                <label for="board_size">Board Size:</label>
+                <div id = "board_size">
+                    <?php $decode = json_decode($_SESSION["board"]); 
+                    $board_width = $decode->board_width;
+                    $board_height = $decode->board_height;
+                    echo $board_width."x".$board_height;
+                    ?>
+                </div>
+                <label for="board_color">Board Color:</label>
+                <div id = "board_color">
+                    <?php $decode = json_decode($_SESSION["board"]); 
+                    $board_color = $decode->board_color;
+                    echo $board_color;
+                    ?>
+                </div>
+        </div>
+     
+        <div class="display">
             <!-- player 1 Info -->
             <h3 id="p1_name"><?php echo $_SESSION['username'];?></h3>
             <p id="p1_color"><?php echo json_decode($_SESSION["player1"])->chip_color; ?> </p>

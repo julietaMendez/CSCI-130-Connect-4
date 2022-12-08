@@ -110,20 +110,21 @@ h2{
     grid-gap: 20px;
 }
 
-#contact{
+.contact{
     text-align: center;
     color:gray;
     font-size: 20px;
 }
 
 /* Email Links */
-a{
+a {
     text-decoration: none;
     color: inherit;
     font-weight: bold;
 }
 
-a:hover { 
+.contact > a:hover{ 
     color: white;
     transition: .2s ease-in-out;
 }
+
