@@ -13,7 +13,7 @@ require "../database/header.php";
     </div>
     <section id="menu">
         <div id="navigate">
-            <a href="../game/game_options.php">Play Connect 4</a>
+            <a  href="../game/game_options.php">Play Connect 4</a>
         </div>
         <div id="navigate">
             <a href="../menu/help.php">Instructions</a>

@@ -49,3 +49,12 @@ form{
   justify-content: space-evenly;
 }
 
+input[type="text"],[type="password"]{
+  border-radius: 50px;
+  height:30px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 10px;
+
+}
+

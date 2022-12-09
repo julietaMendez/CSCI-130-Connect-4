@@ -36,7 +36,7 @@ include "../menu/navbar.php";
     <li>Gaurantee a win by setting up two win conditions stacked on top of each other!</li>
     </ol>
 
-    <img src="../img/win_ex.png" alt="Example of stacked wins img" width="400" height="400" class="center">  
+    <img src="../img/win_ex.png" alt="Example of stacked wins img" width="450" height="400" class="center">  
     </div>
 </body>
 </html>

@@ -20,7 +20,7 @@
     </header>
     <div class="row">
     <div class="col">
-            <h2>Sign Up</h2>
+            <h1>Sign Up</h1>
             <p>Please fill this form to create an account.</p>
             <form action="register_mysql.php" method="post">
         
@@ -49,7 +49,7 @@
         
 <!-- Login Section -->
 <div class="col">
-            <h2>Login</h2>
+            <h1>Login</h1>
             <p>Please fill in your credentials to login.</p>
             <form action="login_mysql.php" method="post">  
                     <label><sup>*</sup>Username:</label>
