@@ -22,10 +22,10 @@ body{
 .center{
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
-
-input[type="button"]{
+#sort_section input[type="button"]{
     background-color: #b1102b;
     color:white;
     border-radius: 50px;
@@ -34,13 +34,12 @@ input[type="button"]{
     box-shadow: 3px 3px rgb(0, 0, 0);
 }
 
-input[type="button"]:hover{
+#sort_section input[type="button"]:hover{
     transform: translate(2px, 2px);
     box-shadow: 1px 1px rgb(0, 0, 0);
     transition: .25s ease-in-out;
-}
-  
-
-input[type="button"]:hover{
     background-color: #720a1b;
 }
+
+
+

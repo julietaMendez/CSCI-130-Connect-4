@@ -40,7 +40,6 @@
 <!-- display all registration errors -->
             <?php
             if(isset($_SESSION['reg_err_message'])){
-                
                 foreach ($_SESSION['reg_err_message'] as $error){
                 echo $error.'<br>';}
             }
@@ -52,18 +51,12 @@
 <div class="col">
             <h2>Login</h2>
             <p>Please fill in your credentials to login.</p>
-            <form action="login_mysql.php" method="post">
-              
+            <form action="login_mysql.php" method="post">  
                     <label><sup>*</sup>Username:</label>
                     <input type="text" name="username" value="" />
-              
-             
                     <label><sup>*</sup>Password:</label>
                     <input type="password" name="password" />
-                 
-               
                     <input type="submit" class="btn" value="submit" />
-            
             </form>
 <!-- display all login errors -->
             <?php

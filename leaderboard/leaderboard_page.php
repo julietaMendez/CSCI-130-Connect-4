@@ -9,22 +9,16 @@ include "../menu/navbar.php";
         <link rel="stylesheet" href="leaderboard.css">
     </head>
     <body>
-    <!-- <div class="topnav">
-        <a href="../connect4.php">Play</a>
-        <a class="active" href="help.html">Instructions</a>
-        <a href="../leaderboard/leaderboard_page.php">Leaderboard</a>
-        <a href="contact_us.html">Contact Us</a>
-    </div>  -->
-        <form >
+        <form id="sort_section">
             <fieldset class="center">
             <legend><h1>Leaderboard</h1></legend>
                 Sort By:
-                <input type=button onclick=sort(this.value) value="Most Wins">
-                <input type=button onclick=sort(this.value) value="Least Wins">
-                <input type=button onclick=sort(this.value) value="Most Games">
-                <input type=button onclick=sort(this.value) value="Least Games">
-                <input type=button onclick=sort(this.value) value="Most Time">
-                <input type=button onclick=sort(this.value) value="Least Time">
+                <input type=button id="Most Wins" onclick=sort(this.id) value="Most Wins">
+                <input type=button id="Least Wins" onclick=sort(this.id) value="Least Wins">
+                <input type=button id="Most Games" onclick=sort(this.id) value="Most Games">
+                <input type=button id="Least Games" onclick=sort(this.id) value="Least Games">
+                <input type=button id="Most Time" onclick=sort(this.id) value="Most Time">
+                <input type=button id="Least Time" onclick=sort(this.id) value="Least Time">
             </fieldset>
         </form>
         <table id=leaders_tbl>

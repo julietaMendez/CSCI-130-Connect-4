@@ -1,3 +1,11 @@
+
+onload();
+
+function onload(){
+  sort_criteria = "Most Wins";
+  send_post("desc_win", "leader_sort.php", display_obj_handler);
+}
+
 function sort(sort_criteria){
     if(sort_criteria == "Most Wins"){
         send_post("desc_win", "leader_sort.php", display_obj_handler);
@@ -40,6 +48,7 @@ function display_obj_handler() {
         if (httpRequest.status === 200) {
           db_obj = JSON.parse(httpRequest.responseText);
           displayObj(db_obj);
+          update_btn();
         } else {
           alert("There was a problem with the request.");
         }
@@ -49,9 +58,15 @@ function display_obj_handler() {
     }
 }
 
+function update_btn(){
+  let btn = document.getElementById(sort_criteria)
+  btn.classList.add("active");
+}
+
 // display an object
 function displayObj(arr){
     let tbl = document.getElementById("leaders_tbl");
+    // create table columns 
     tbl.innerHTML="<th><h3>Rank</h3></th><th><h3>UserName</h3></th><th><h3>Wins</h3></th><th><h3>Losses</h3></th><th><h3>Draws</h3></th><th><h3>Total Games</h3></th><th><h3>Total Time</h3></th>";
     for(let i=0; i<arr.length; i++){
         let tr = document.createElement("TR");
