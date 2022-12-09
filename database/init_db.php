@@ -1,5 +1,5 @@
 <?php
-include "player_class.php";
+include "../game/player_class.php";
 $db_params = parse_ini_file("db_credentials.ini");
 define('DB_SERVER',  $db_params['server']);
 define('DB_USERNAME',  $db_params['username']);
@@ -56,7 +56,7 @@ if ($stmt==FALSE) {
 $stmt->bind_param("ssiiiii", $username, $password, $win, $lose, $draw, $total_games, $total_time);
 
 // load json data into table
-$json_str = file_get_contents('./leaderboard/generated.json');
+$json_str = file_get_contents('../leaderboard/generated.json');
 $players_arr = json_decode($json_str);
 $count = count($players_arr);
 //create player
@@ -69,15 +69,9 @@ for ($i=0;$i<$count;$i++) {
     $total_games = $players_arr[$i]->total_games;
     $total_time = $players_arr[$i]->total_time;
     $stmt->execute();
-    echo $username.' '.$password.' '.$win.' '.$lose.' '.$draw.' '.$total_games.' '.$total_time;
+    //echo $username.' '.$password.' '.$win.' '.$lose.' '.$draw.' '.$total_games.' '.$total_time;
 }
 $stmt->close();
 $conn->close();
-
-// // no need to save player 2 to the db
-// $player = new Player();
-// $username = $player2->username;
-// $chip_color = $player2->chip_color;
-// $hints = $player2->hints;
 
 ?>
