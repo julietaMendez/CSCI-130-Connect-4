@@ -74,7 +74,6 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
 
 #players_tbl{
   width: 100%;
-  margin: 10px;
 }
 
 .row {
@@ -186,8 +185,15 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
 
 #p1_name, #p2_name{
   text-align: center;
+  border-radius: 5px;
 }
 
 p{
   margin:5px;
+}
+
+#curr_player{
+  text-align: center;
+  padding:10px;
+  border-radius: 5px;
 }
