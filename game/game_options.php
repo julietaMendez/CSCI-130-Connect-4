@@ -52,9 +52,9 @@ include "../menu/navbar.php";
                 <input type="text" id="board_color" name="board_color" value="blue">
                <h2>Choose board size: </h2>
             <div>
-                <input type="button" class="red btn" id="6x7" value="7x6" onclick="set_tbl_size(7,6)">
-                <input type="button" class="blue btn" id="8x9" value="9x8" onclick="set_tbl_size(9,8)">
-                <input type="text" id="board_size" name="board_size" value="6x7">   
+                <input type="button" class="red btn" id="7x6" value="7x6" onclick="set_tbl_size(7,6)">
+                <input type="button" class="blue btn" id="9x8" value="9x8" onclick="set_tbl_size(9,8)">
+                <input type="text" id="board_size" name="board_size" value="7x6">   
             </div>
             </fieldset>
             <input type="submit" class="start btn" value="Start Game" id="start_btn">

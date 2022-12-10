@@ -74,6 +74,7 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
 
 #players_tbl{
   width: 100%;
+  margin: 10px;
 }
 
 .row {
@@ -104,7 +105,10 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
   padding:10px;
 }
 
-#connect_4_table { margin: auto; }
+#connect_4_table { 
+  margin: 10px auto; 
+  border-radius: 20px;
+}
 
 /* Pop Up */
 .show_popup{
