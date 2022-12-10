@@ -186,6 +186,7 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
 #p1_name, #p2_name{
   text-align: center;
   border-radius: 5px;
+  margin:0 2px;
 }
 
 p{
