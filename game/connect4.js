@@ -216,9 +216,10 @@ function total_3_in_a_row(curr_row, curr_col){
   // Across: Check 2 to the LEFT -----------------------------------------------
   traverses=0;
   accum3=0;
-  for(let j=curr_col; j > 0 && traverses < 3 ; j--){
+  for(let j=curr_col; j >= 0 && traverses < 3 ; j--){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
+    console.log(str, accum3)
     if(accum3 == 3){ // found 3-in-a-row
       add_3_in_a_row_stat(player_color);
 
