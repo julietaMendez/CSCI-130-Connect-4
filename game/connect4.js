@@ -161,7 +161,6 @@ function place_chip(id) {
 
 }
 
-
 // Database Post Request and Callback Handler ------------------------------------------
 function send_post(send_str, path, callback) {
   httpRequest = new XMLHttpRequest();
@@ -179,7 +178,6 @@ function send_post(send_str, path, callback) {
 }
 
 function response_handler() {
-  console.log('in res');
   try {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
@@ -213,7 +211,7 @@ function total_3_in_a_row(curr_row, curr_col){
   // Across: Check 2 to the LEFT -----------------------------------------------
   traverses=0;
   accum3=0;
-  for(let j=curr_col; j > 0 && traverses < 3; j--){
+  for(let j=curr_col; j > 0 && traverses < 3 && j != col_max-1 ; j--){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
@@ -229,7 +227,7 @@ function total_3_in_a_row(curr_row, curr_col){
   // Across: Check 2 to the RIGHT -----------------------------------------------
   traverses=0;
   accum3=0;
-  for(let j=curr_col; j < col_max && traverses < 3; j++){
+  for(let j=curr_col; j < col_max && traverses < 3 && curr_col != 0; j++){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
@@ -253,7 +251,6 @@ function total_3_in_a_row(curr_row, curr_col){
           let td = document.getElementById(str);
           let chip = (td.firstChild);
           if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
-            alert(str)
            add_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
           }
         }
@@ -264,7 +261,7 @@ function total_3_in_a_row(curr_row, curr_col){
   let col = curr_col;
   traverses=0;
   accum3=0;
-  for(let i = curr_row; i > 0 && col > 0 && traverses < 3; i--){
+  for(let i = curr_row; i > 0 && col > 0 && traverses < 3 && curr_row != row_max-1; i--){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
@@ -282,7 +279,7 @@ function total_3_in_a_row(curr_row, curr_col){
   col = curr_col;
   traverses=0;
   accum3=0;
-  for(let i = curr_row; i < row_max && col < col_max && traverses < 3; i++){
+  for(let i = curr_row; i < row_max && col < col_max && traverses < 3 && curr_col != 0; i++){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
@@ -317,12 +314,12 @@ function total_3_in_a_row(curr_row, curr_col){
   col = curr_col;
   traverses=0;
   accum3=0;
-  for(let i = curr_row; i > 0 && col < col_max && traverses < 3; i--){
+  for(let i = curr_row; i > 0 && col < col_max && traverses < 3 && curr_row != row_max-1 && col != 0; i--){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-     
-       add_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      
+      add_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
     col++;
