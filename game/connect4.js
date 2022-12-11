@@ -457,12 +457,10 @@ function update_curr_player() { //updates curr player display
     curr_player.innerHTML = p1_name;
     curr_player.classList = "";
     curr_player.classList.add(player1_color);    
-    curr_player.classList.add("btn");
   } else {
     curr_player.innerHTML = p2_name;
     curr_player.classList = "";
     curr_player.classList.add(player2_color);
-    curr_player.classList.add("btn");    
   }
   // ternary to alternate players
   player_id == 1 ? (player_id = 2) : (player_id = 1);
