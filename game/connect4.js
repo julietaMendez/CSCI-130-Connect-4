@@ -207,7 +207,8 @@ function total_3_in_a_row(curr_row, curr_col){
 
       // create hint if possible
       let hint = (i-3)+'_'+curr_col;
-      if(is_empty1){add_hint(hint); }// assign the correct player the total of 3-in-a-rows
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){add_hint(hint); }// assign the correct player the total of 3-in-a-rows
     }
     traverses++;
   }
