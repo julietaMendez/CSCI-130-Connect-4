@@ -6,8 +6,8 @@ var tbl = document.getElementById("connect_4_table");
 var colArr = createColArr(col_max); // the number of chips inside a column
 var empties; // amount of empty spaces left on the board
 var player_id = 1;
-var p1_3_in_a_rows = 0;
-var p2_3_in_a_rows = 0;
+var p1_3_in_a_rows = [];
+var p2_3_in_a_rows = [];
 var total_time_elapsed;
 
 function createColArr(col_max) {
@@ -96,19 +96,26 @@ function place_chip(id) {
     // prevents highlight error when there is no more spaces in the col
     if(space_avail != -1){
       colArr[curr_col] += 1;
-
+      let id = space_avail + "_" + curr_col;
       // update div to put chip in place
-      let chip = document.getElementById(space_avail + "_" + curr_col);
+      let chip = document.getElementById(id);
 
-      if(player_id == 0){
-        player_color = `${player1_color}`;
-      }else{
+      if(player_id == 1){
         player_color = `${player2_color}`;
+        if(p1_3_in_a_rows.indexOf(id) > -1){  //if the placed chip is a hint for opponent, remove hint
+          chip.classList.remove("hint");
+        }
+      }else{
+        player_color = `${player1_color}`;
+        if(p2_3_in_a_rows.indexOf(id) > -1){  //if the placed chip is a hint for opponent, remove hint
+          chip.classList.remove("hint");
+        }
       }
 
       let str = "<div class='chip "+player_color+"'></div>";
-    
+      
       chip.innerHTML = str; //put built string into chip
+      
       
 
      // check for winning condition
@@ -194,7 +201,8 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = i+"_"+curr_col; // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = (i-3)+'_'+curr_col;
+      update_3_in_a_row_stat(player_color, hint); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
   }
@@ -204,9 +212,13 @@ function total_3_in_a_row(curr_row, curr_col){
   accum3=0;
   for(let j=curr_col; j > 0 && traverses < 3; j--){
     let str = curr_row+"_"+(j); // creates neighboring chips id
-    accum3 = count_in_a_row(str, accum3); 
+    accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = curr_row+'_'+(j+3);
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){
+        update_3_in_a_row_stat(player_color, hint); // assign the correct player the total of 3-in-a-rows
+      }
     }
     traverses++;
   }
@@ -216,9 +228,13 @@ function total_3_in_a_row(curr_row, curr_col){
   accum3=0;
   for(let j=curr_col; j < col_max && traverses < 3; j++){
     let str = curr_row+"_"+(j); // creates neighboring chips id
-    accum3 = count_in_a_row(str, accum3); 
+    accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = curr_row+'_'+(j-3);
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){
+        update_3_in_a_row_stat(player_color, hint); // assign the correct player the total of 3-in-a-rows}
+      }
     }
     traverses++;
   }
@@ -248,7 +264,11 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = (i+3)+'_'+(curr_col+1);
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){
+        update_3_in_a_row_stat(player_color,hint); // assign the correct player the total of 3-in-a-rows
+      }
     }
     traverses++;
     col--;
@@ -262,7 +282,11 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = (i-3)+'_'+(curr_col-1);
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){
+        update_3_in_a_row_stat(player_color, hint); // assign the correct player the total of 3-in-a-rows
+      }
     }
     traverses++;
     col++;
@@ -293,7 +317,8 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+     
+        update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
     }
     traverses++;
     col++;
@@ -307,7 +332,11 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      update_3_in_a_row_stat(player_color); // assign the correct player the total of 3-in-a-rows
+      let hint = (i-3)+'_'+(curr_col+1);
+      let is_empty = document.getElementById(hint).firstChild.classList[0]=="empty_space";
+      if(is_empty){
+        update_3_in_a_row_stat(player_color,hint); // assign the correct player the total of 3-in-a-rows
+      }
     }
     traverses++;
     col--;
@@ -332,12 +361,16 @@ function total_3_in_a_row(curr_row, curr_col){
 
 }
 
-function update_3_in_a_row_stat(player_color){
+function update_3_in_a_row_stat(player_color, hint){
   if(player_color == `${player1_color}`){
-    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + (++p1_3_in_a_rows);
+    p1_3_in_a_rows.push(hint);
+    document.getElementById(hint).classList.add("hint");
+    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows.length;
   }
   else{
-    document.getElementById("p2_3_in_a_row").innerHTML =  "3 In A Rows: " + (++p2_3_in_a_rows);
+    p2_3_in_a_rows.push(hint);
+    document.getElementById(hint).classList.add("hint");
+    document.getElementById("p2_3_in_a_row").innerHTML = "3 In A Rows: " + p2_3_in_a_rows.length;
   } 
 }
 
@@ -432,7 +465,7 @@ function update_curr_player() { //updates curr player display
     curr_player.classList.add("btn");    
   }
   // ternary to alternate players
-  player_id == 1 ? (player_id = 0) : (player_id = 1);
+  player_id == 1 ? (player_id = 2) : (player_id = 1);
 }
 
 function pretty_stats(){ // hilight players name with their chip color

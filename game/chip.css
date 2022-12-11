@@ -149,7 +149,7 @@ input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:
   transition: .25s ease;
 }
 
-.hilight{
+.hilight, .hint{
   filter: brightness(2) saturate(2);
 }
 

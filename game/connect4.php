@@ -49,13 +49,27 @@ include "../menu/navbar.php";
                         <p>Wins: <?php echo json_decode($_SESSION["player1"])->win; ?></p>
                         <p>Losses: <?php echo json_decode($_SESSION["player1"])->lose; ?></p>
                         <p>Draws: <?php echo json_decode($_SESSION["player1"])->draw; ?></p>
-                        <p id="p1_3_in_a_row">3 In A Rows: 0</p>
+                        <p id="p1_3_in_a_row">3 In A Rows: 
+                            <!-- <?php 
+                                $arr = json_decode($_SESSION["player1"])->hints; 
+                                foreach($arr as $id){
+                                    echo $id;
+                                }
+                            ?> -->
+                        </p>
                     </td>
                     <td>
                         <!-- Player 2 Info -->
                         <h3 id="p2_name"><?php echo json_decode($_SESSION["player2"])->username?></h3>
                         <p id="p2_color"><?php echo json_decode($_SESSION["player2"])->chip_color; ?> </p>
-                        <p id="p2_3_in_a_row">3 In A Rows: 0</p>
+                        <p id="p2_3_in_a_row">3 In A Rows: 0
+                            <!-- <?php 
+                                $arr = json_decode($_SESSION["player1"])->hints; 
+                                foreach($arr as $id){
+                                    echo $id;
+                                }
+                            ?> -->
+                         </p>
                     </td>
                 </tr>
             </table>
