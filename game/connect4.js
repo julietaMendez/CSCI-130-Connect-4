@@ -9,6 +9,8 @@ var empties; // amount of empty spaces left on the board
 var player_id = 2;
 var p1_3_in_a_rows = [];
 var p2_3_in_a_rows = [];
+var p1_3_in_a_row_count = 0;
+var p2_3_in_a_row_count = 0;
 var total_time_elapsed;
 
 function createColArr(col_max) {
@@ -201,8 +203,11 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = i+"_"+curr_col; // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       let hint = (i-3)+'_'+curr_col;
-     add_3_in_a_row_stat(player_color, hint); // assign the correct player the total of 3-in-a-rows
+      if(is_empty1){add_hint(hint); }// assign the correct player the total of 3-in-a-rows
     }
     traverses++;
   }
@@ -214,16 +219,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
-      //console.log("left across")
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((j-1)>=0){
         let hint1 = curr_row+'_'+(j-1);
         let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-        if(is_empty1){add_3_in_a_row_stat(player_color, hint1); } // assign the correct player the total of 3-in-a-rows
+        if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
       if(j+3<=col_max-1){
         let hint2 = curr_row+'_'+(j+3);
         let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-        if(is_empty2){add_3_in_a_row_stat(player_color, hint2); } // assign the correct player the total of 3-in-a-rows
+        if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
       }
      
     }
@@ -237,17 +244,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = curr_row+"_"+(j); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3);
     if(accum3 == 3){ // found 3-in-a-row
-      //console.log("right across")
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((j-3)>=0){
         let hint1 = curr_row+'_'+(j-3);
         let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-        if(is_empty1){add_3_in_a_row_stat(player_color, hint1); } // assign the correct player the total of 3-in-a-rows}
+        if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
       if((j+1)<=col_max-1){
         let hint2 = curr_row+'_'+(j+1);
         let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-        if(is_empty2){add_3_in_a_row_stat(player_color, hint2); } // assign the correct player the total of 3-in-a-rows}
-
+        if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
       }
     }
     traverses++;
@@ -264,17 +272,20 @@ function total_3_in_a_row(curr_row, curr_col){
           let td = document.getElementById(str);
           let chip = (td.firstChild);
           if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+            add_3_in_a_row_stat(player_color);
+
+            // create hint if possible
             if(curr_col+2<=col_max-1){
               //check if right is inside the board
               let hint1 = curr_row+"_"+(curr_col+2);
               let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-              if(is_empty1){add_3_in_a_row_stat(player_color, hint1);}
+              if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
             }
             if((curr_col-2)>=0){
                //check if left is inside the board
               let hint2 = curr_row+"_"+(curr_col-2);
               let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-              if(is_empty2){add_3_in_a_row_stat(player_color, hint2);}
+              if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
             }
           }
         }
@@ -289,16 +300,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      //console.log("top/left")
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((i-1)>=0 &&(curr_col-3)>=0){
         let hint1 = (i-1)+'_'+(curr_col-3); //bottom right highlight
         let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-        if(is_empty1){add_3_in_a_row_stat(player_color, hint1);} // assign the correct player the total of 3-in-a-rows
+        if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
       if((i+3)<=row_max-1 && (curr_col+1)<=col_max-1){
       let hint2 = (i+3)+'_'+(curr_col+1);
       let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-      if(is_empty2){add_3_in_a_row_stat(player_color, hint2);}// assign the correct player the total of 3-in-a-rows
+      if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
       }
     }
     traverses++;
@@ -313,16 +326,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      //console.log('down right')
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((i-3)>=0 && (curr_col-1)>=0){
         let hint1 = (i-3)+'_'+(curr_col-1);
         let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-        if(is_empty1){add_3_in_a_row_stat(player_color, hint1);} // assign the correct player the total of 3-in-a-rows
+        if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
       if((i+1)<=row_max-1 && (curr_col+3)<=col_max-1){
         let hint2 = (i+1)+'_'+(curr_col+3);
         let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-        if(is_empty2){add_3_in_a_row_stat(player_color, hint2);} // assign the correct player the total of 3-in-a-rows
+        if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
       }
     }
     traverses++;
@@ -340,17 +355,20 @@ function total_3_in_a_row(curr_row, curr_col){
         let td = document.getElementById(str);
         let chip = (td.firstChild);
         if(chip.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+          add_3_in_a_row_stat(player_color);
+
+          // create hint if possible
           if((curr_row+2)<=row_max-1 && (curr_col+2)<=col_max-1){
             //check if bottom left is inside the board
             let hint1 = (curr_row+2)+"_"+(curr_col+2);
             let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-            if(is_empty1){add_3_in_a_row_stat(player_color, hint1);}
+            if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
           }
           if((curr_row-2)>=0 && (curr_col-2)>=0){
              //check if top left is inside the board
             let hint2 = (curr_row-2)+"_"+(curr_col-2);
             let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-            if(is_empty2){add_3_in_a_row_stat(player_color, hint2);}
+            if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
           }
         }
       }
@@ -365,15 +383,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((i-3)>=0 && (curr_col-1>=0)){
         let hint1 = (i-3)+'_'+(curr_col-1);
         let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-        if(is_empty1){add_3_in_a_row_stat(player_color, hint1);} 
+        if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
       if((i+1)<=row_max-1 && (curr_col+3<=col_max-1)){
         let hint2 = (i+1)+'_'+(curr_col+3);
         let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-        if(is_empty2){add_3_in_a_row_stat(player_color, hint2);} // assign the correct player the total of 3-in-a-rows
+        if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
       }
     }
     traverses++;
@@ -388,16 +409,18 @@ function total_3_in_a_row(curr_row, curr_col){
     let str = (i)+"_"+(col); // creates neighboring chips id
     accum3 = count_in_a_row(str, accum3); 
     if(accum3 == 3){ // found 3-in-a-row
-      //console.log("bottom/left")
+      add_3_in_a_row_stat(player_color);
+
+      // create hint if possible
       if((i-3)>=0 && (curr_col+1<=col_max-1)){
       let hint1 = (i-3)+'_'+(curr_col+1);
       let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-      if(is_empty1){add_3_in_a_row_stat(player_color, hint1);  }// assign the correct player the total of 3-in-a-rows
+      if(is_empty1){add_hint(hint1); }// assign the correct player the total of 3-in-a-rows
       }
     if((i+1)<=row_max-1 && (curr_col-3>=0)){
       let hint2 = (i+1)+'_'+(curr_col-3);
       let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-      if(is_empty2){add_3_in_a_row_stat(player_color, hint2);  }// assign the correct player the total of 3-in-a-rows
+      if(is_empty2){add_hint(hint2); }// assign the correct player the total of 3-in-a-rows
     }}
     traverses++;
     col--;
@@ -414,17 +437,21 @@ function total_3_in_a_row(curr_row, curr_col){
         let td = document.getElementById(str2);
         let chip2 = (td.firstChild);
         if(chip2.classList[1]==player_color){ // If so, increment 3-in-a-row and update stats display
+          add_3_in_a_row_stat(player_color);
+
+          // create hint if possible
           if((curr_row+2)<=row_max-1 && (curr_col-2)>=0){
             //check if bottom left is inside the board
             let hint1 = (curr_row+2)+"_"+(curr_col-2);
             let is_empty1 = document.getElementById(hint1).firstChild.classList[0]=="empty_space";
-            if(is_empty1){add_3_in_a_row_stat(player_color, hint1);}
+            if(is_empty1){add_hint(hint1);}
+            
           }
           if((curr_row-2)>=0 && (curr_col+2)<=(col_max-1)){
              //check if top right is inside the board
             let hint2 = (curr_row-2)+"_"+(curr_col+2);
             let is_empty2 = document.getElementById(hint2).firstChild.classList[0]=="empty_space";
-            if(is_empty2){add_3_in_a_row_stat(player_color, hint2);}
+            if(is_empty2){add_hint(hint2);}
           }
         }
       }
@@ -450,30 +477,36 @@ function remove_3_in_a_row_stat(hint){
     let index = p2_3_in_a_rows.indexOf(hint);
     p2_3_in_a_rows.splice(index, 1); // 2nd parameter means remove one item only
     document.getElementById(hint).classList.remove("hint");
-    document.getElementById("p2_3_in_a_row").innerHTML = "3 In A Rows: " + p2_3_in_a_rows.length;
+    // document.getElementById("p2_3_in_a_row").innerHTML = "3 In A Rows: " + p2_3_in_a_rows.length;
   }
   else{
     let index = p1_3_in_a_rows.indexOf(hint);
     console.log('remove from1 '+hint)
     p1_3_in_a_rows.splice(index, 1); // 2nd parameter means remove one item only
     document.getElementById(hint).classList.remove("hint");
-    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows.length;
+    // document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows.length;
   } 
 }
 
+function add_3_in_a_row_stat(player_color){
+  if(player_color == `${player1_color}`){
+    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + (++p1_3_in_a_row_count);
+  }
+  else{
+    document.getElementById("p2_3_in_a_row").innerHTML = "3 In A Rows: " + (++p2_3_in_a_row_count);
+  } 
+}
 
-function add_3_in_a_row_stat(player_color, hint){
+function add_hint(hint){
   if(player_color == `${player1_color}`){
     p1_3_in_a_rows.push(hint);
     p2_3_in_a_rows.forEach(hint=>document.getElementById(hint).classList.add("hint"))
     p1_3_in_a_rows.forEach(hint=>document.getElementById(hint).classList.remove("hint"));
-    document.getElementById("p1_3_in_a_row").innerHTML = "3 In A Rows: " + p1_3_in_a_rows.length;
   }
   else{
     p2_3_in_a_rows.push(hint);
     p1_3_in_a_rows.forEach(hint=>document.getElementById(hint).classList.add("hint"));
     p2_3_in_a_rows.forEach(hint=>document.getElementById(hint).classList.remove("hint"));
-    document.getElementById("p2_3_in_a_row").innerHTML = "3 In A Rows: " + p2_3_in_a_rows.length;
   } 
 }
 
