@@ -1,0 +1,200 @@
+html { 
+  font: normal 14px Tahoma, Verdana, Arial, sans-serif;
+  height:100%;
+}
+
+body{
+  height:100%;
+  margin:0;
+}
+
+.options{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.options fieldset{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border:2px solid black;
+  border-radius: 5px;
+  width:30%;
+  float:left;
+  min-height: 250px;
+  background-color: #ced1d4;
+}
+
+#game_hdr{
+  display: flex;
+  align-items: center;
+  background-color: #ced1d4;
+  padding-left: 25px;
+}
+
+#game_hdr > label{
+  margin-left: 50px;
+}
+
+.chip { /* the chips on the board */
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid black;
+  margin: auto;
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+.chip-btn { /* the buttons to choose your chip color look like chips */
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  margin: auto;
+}
+
+input[type="button"], [type="submit"], [type="reset"], .press{
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+input[type="button"]:hover, [type="submit"]:hover, [type="reset"]:hover, .press:hover{
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px rgb(0, 0, 0);
+  filter: brightness(75%);
+  transition: .25s ease-in-out;
+}
+
+.start{
+  background-color: rgb(0, 165, 0);
+  color:white;
+  font-size: 30px;
+  width:80%;
+  border-radius: 30px;
+}
+
+#players_tbl{
+  width: 100%;
+}
+
+.row {
+  display:flex;
+  flex-direction:row;
+
+}
+
+.row td{
+  display:flex;
+  flex-direction:column;
+  text-align: start;
+  width:50%;
+
+}
+
+.btn{
+  text-align: center;
+  margin: 10px;
+  padding:10px;
+  border-radius: 30px;
+  min-width: 60px;
+  border: 1px solid black;
+  color:black;
+}
+
+#connect_4_table td{
+  padding:10px;
+}
+
+#connect_4_table { 
+  margin: 10px auto; 
+  border-radius: 20px;
+}
+
+/* Pop Up */
+.show_popup{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  opacity: 90%;
+  top: 0;
+  bottom:0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255); 
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+
+.show_popup:hover{
+  font-weight: bolder;
+  font-size: 70px;
+  transition: .5s ease-in-out;
+}
+
+.popup{
+  border: 5px solid black;
+  border-radius: 70px;
+  padding: 50px;
+}
+
+/* Used to hide popups until game ends */
+.hidden{ display: none; }
+
+.darken{
+  filter: brightness(75%);
+  transition: .25s ease;
+}
+
+.hilight, .hint{
+  filter: brightness(2) saturate(2);
+}
+
+#player_color_table { width: 100%; }
+
+/* Chip Colors */
+.red{ background-color: red; }
+.skyblue{ background-color: skyblue; }
+.yellow { background-color: rgb(255, 216, 23); }
+.dullpink { background-color: rgb(192, 95, 95); }
+
+/* Board Colors */
+.blue { background-color: rgb(88, 88, 255); }
+.green { background-color: lightgreen; }
+.pink{ background-color: pink; }
+.purple { background-color: rgb(170, 108, 228); }
+
+.empty_space {
+  width: 52px;
+  height: 52px;
+  background: rgb(0, 0, 0, 0.25);
+  border-radius: 50px;
+  margin: auto;
+  box-shadow: 2px 2px 2px rgb(255, 255, 255, .5);
+}
+
+.display {
+  width: 30%;
+  float: right;
+  background-color: lightgray;
+  padding: 0 20px;
+  margin: 0 20px;
+}
+
+#p1_name, #p2_name{
+  text-align: center;
+  border-radius: 5px;
+  margin:0 2px;
+}
+
+p{
+  margin:5px;
+}
+
+#curr_player{
+  text-align: center;
+  padding:10px;
+  border-radius: 5px;
+}
